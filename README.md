@@ -4,8 +4,6 @@ Bus route finder application.
 
 ## Project Structure
 
-## Project Structure
-
 - **`frontend/`**: The user interface and client-side logic.
   - **Stack:** Vanilla JS, SCSS.
   - **Tooling:** `live-server` (local hosting), `sass` (CSS compilation).
