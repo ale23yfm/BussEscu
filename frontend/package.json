@@ -1,0 +1,23 @@
+{
+  "name": "bussescu-frontend",
+  "version": "1.0.0",
+  "description": "Bussescu - Bus route finder",
+  "main": "src/index.html",
+  "scripts": {
+    "live-server": "npx live-server src",
+    "sass-watch": "sass --watch src/scss:src/dist",
+    "dev": "concurrently \"npm run sass-watch\" \"npm run live-server\"",
+    "compile": "sass src/scss:src/dist --no-source-map --style=compressed",
+    "watch": "sass --watch src/scss:src/dist"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "live-server": "^1.2.2",
+    "sass": "^1.85.0"
+  },
+  "overrides": {
+    "braces": "^3.0.3",
+    "uuid": "^11.1.1",
+    "micromatch": "^4.0.8"
+  }
+}
