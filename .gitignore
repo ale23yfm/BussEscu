@@ -4,3 +4,5 @@ frontend/src/dist/
 backend/node_modules/
 frontend/package-lock.json
 
+.env
+/vendor/
