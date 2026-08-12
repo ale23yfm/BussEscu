@@ -1,0 +1,137 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+header {
+  width: clamp(280px, 100%, 432px);
+  padding: 3.6rem 1.2rem;
+}
+
+main {
+  @include flex(column, center, center);
+  width: clamp(280px, 100%, 432px);
+  gap: 2.4rem;
+  padding: 3.6rem 1.2rem;
+  border-radius: 1.5rem;
+  background-color: var(--form-bg);
+  box-shadow: 0 0 8px 4px var(--form-shadow);
+
+  .heading {
+    width: 100%;
+    @include flex(row, space-between, center);
+
+    &__title {
+      letter-spacing: 4%;
+      font-weight: 600;
+      font-size: 1.6rem;
+    }
+  }
+
+  .form-wrapper {
+    width: 100%;
+    padding: 2.4rem 1.2rem;
+    @include flex(column, center, center);
+    gap: 1.8rem;
+    background-color: var(--form-wrapper-bg);
+    border: 1px solid var(--form-wrapper-border);
+    border-radius: 1.5rem;
+
+    .dropdown-wrapper {
+      width: 100%;
+      position: relative;
+
+      &__input {
+        position: relative;
+        width: 100%;
+        @include flex(row, center, center);
+
+        .search-input {
+          width: 100%;
+          padding: 1.2rem 1.8rem;
+          font-size: 1.4rem;
+          background-color: var(--search-input-bg);
+          color: var(--search-input-text);
+          caret-color: var(--search-input-text);
+          border: none;
+          border-bottom: 1px solid transparent;
+          border-radius: 15rem;
+          box-shadow: 2px 2px 6px var(--search-input-shadow);
+          outline: none;
+
+          &:focus,
+          &:not(:placeholder-shown) {
+            border-bottom-color: $yellow-500;
+            background-color: var(--search-input-focus-bg);
+          }
+        }
+
+        .point-icon {
+          width: 2rem;
+          height: 2rem;
+          position: absolute;
+          top: 42%;
+          right: 1.5rem;
+          transform: translateY(-50%);
+        }
+      }
+
+      &__list {
+        position: relative;
+        width: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+        background-color: var(--search-input-focus-bg);
+        border: none;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        box-shadow: 0 6px 12px var(--search-input-shadow);
+        list-style: none;
+        margin: 0;
+
+        &.hidden {
+          display: none;
+        }
+      }
+
+      &__item {
+        padding: 0.8rem 1.8rem;
+        font-size: 1.3rem;
+        color: var(--search-input-text);
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--item-separator);
+        }
+
+        &:hover {
+          background-color: var(--dropdown-item-hover-bg);
+        }
+      }
+
+      &:has(.dropdown-wrapper__list:not(.hidden)) {
+        .search-input {
+          border-top-left-radius: 1.5rem;
+          border-top-right-radius: 1.5rem;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-bottom: 1px solid var(--item-separator);
+          background-color: var(--search-input-focus-bg);
+          box-shadow: none;
+        }
+
+        .dropdown-wrapper__list {
+          border-bottom: 1px solid $yellow-500;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 390px) {
+    padding: 3.6rem 2.4rem;
+    .heading {
+      &__title {
+        font-size: 2rem;
+      }
+    }
+  }
+}

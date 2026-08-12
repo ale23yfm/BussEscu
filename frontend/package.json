@@ -15,6 +15,9 @@
     "live-server": "^1.2.2",
     "sass": "^1.85.0"
   },
+  "dependencies": {
+    "remixicon": "^4.9.1"
+  },
   "overrides": {
     "braces": "^3.0.3",
     "uuid": "^11.1.1",
