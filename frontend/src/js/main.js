@@ -194,7 +194,7 @@ async function fetchSuggestions(query, listElement, inputElement) {
  */
 
 function renderSuggestions(stations, listElement, inputElement) {
-  listElement.innerHTML = "";
+  listElement.replaceChildren();
 
   if (stations.length === 0) {
     hideSuggestions(listElement);
@@ -224,63 +224,89 @@ function renderSuggestions(stations, listElement, inputElement) {
 
 function hideSuggestions(listElement) {
   listElement.classList.add("hidden");
-  listElement.innerHTML = "";
+  listElement.replaceChildren();
 }
-
-/**
- * Process route search between starting and destination station
- */
 
 function handleSearch() {
   const searchInputs = document.querySelectorAll(".search-input");
-  const resultsContainer = document.querySelector(".results-wrapper__result");
+  const resultsHeading = document.querySelector(".results__heading");
+  const resultsTitle = document.querySelector(".results__title");
+  const resultsIcon = document.querySelector(".results__icon");
+  const resultsWrapper = document.querySelector(".results__wrapper");
 
-  if (!resultsContainer) return;
+  if (!resultsWrapper || !resultsHeading || !resultsTitle) return;
+
+  // Clear previous results
+  resultsWrapper.replaceChildren();
+
+  // Show heading section upon search trigger
+  resultsHeading.classList.remove("hidden");
 
   const startStation = searchInputs[0] ? searchInputs[0].value.trim() : "";
   const endStation = searchInputs[1] ? searchInputs[1].value.trim() : "";
 
+  // 1. Both stations must be selected
   if (!startStation || !endStation) {
-    resultsContainer.innerHTML = `
-      <p class="results-message results-message--error">Vă rugăm să selectați ambele stații (plecare și destinație).</p>
-    `;
+    resultsTitle.textContent = "Selectează stațiile de plecare și sosire";
+    if (resultsIcon) resultsIcon.style.display = "none";
     return;
   }
 
-  if (startStation.toLowerCase() === endStation.toLowerCase()) {
-    resultsContainer.innerHTML = `
-      <p class="results-message results-message--warning">Stația de plecare și destinația trebuie să fie diferite.</p>
-    `;
-    return;
-  }
-
+  const isSameStation = startStation.toLowerCase() === endStation.toLowerCase();
   const connection = findConnection(startStation, endStation);
 
-  if (connection && connection.lines.length > 0) {
-    const linesHTML = connection.lines
-      .map((lineNo) => {
-        const details = mockRouteDetails[lineNo] || {
-          start: "Început linie",
-          end: "Sfârșit linie",
-        };
-        return `
-        <div class="result-card">
-          <span class="result-card__line">${lineNo}</span>
-          <span class="result-card__route">${details.start} / ${details.end}</span>
-        </div>
-      `;
-      })
-      .join("");
-
-    resultsContainer.innerHTML = `
-      <div class="results-header">Linii disponibile:</div>
-      <div class="results-list">${linesHTML}</div>
-    `;
-  } else {
-    resultsContainer.innerHTML = `
-      <p class="results-message">Nu s-a găsit nicio linie directă între <strong>${startStation}</strong> și <strong>${endStation}</strong>.</p>
-    `;
+  // 2. Same station or no direct line connection found
+  if (
+    isSameStation ||
+    !connection ||
+    !connection.lines ||
+    connection.lines.length === 0
+  ) {
+    resultsTitle.textContent = "Nicio linie validă";
+    if (resultsIcon) resultsIcon.style.display = "none";
+    return;
   }
+
+  // 3. Valid lines!
+  resultsTitle.textContent = "Linii valide";
+  if (resultsIcon) resultsIcon.style.display = "block";
+
+  connection.lines.forEach((lineNo) => {
+    const details = mockRouteDetails[lineNo] || {
+      start: startStation,
+      end: endStation,
+    };
+
+    const card = document.createElement("div");
+    card.classList.add("results__wrapper__card");
+
+    const badge = document.createElement("span");
+    badge.className = "badge line-number";
+    badge.textContent = lineNo;
+
+    const lineDetails = document.createElement("div");
+    lineDetails.classList.add("line-details");
+
+    const lineStart = document.createElement("h3");
+    lineStart.classList.add("line-start");
+    lineStart.textContent = details.start;
+
+    const lineEndWrapper = document.createElement("div");
+    lineEndWrapper.classList.add("line-end-wrapper");
+
+    const lineEndIcon = document.createElement("span");
+    lineEndIcon.classList.add("line-end-icon");
+
+    const lineEnd = document.createElement("h3");
+    lineEnd.classList.add("line-end");
+    lineEnd.textContent = details.end;
+
+    lineEndWrapper.append(lineEndIcon, lineEnd);
+    lineDetails.append(lineStart, lineEndWrapper);
+    card.append(badge, lineDetails);
+
+    resultsWrapper.append(card);
+  });
 }
 
 /**
