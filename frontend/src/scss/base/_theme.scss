@@ -59,16 +59,16 @@
 /* Dark Theme */
 [data-theme="dark"] {
   /* Global / Page */
-  --bg-color: #{$grey-600};
+  --bg-color: #{$grey-500};
   --heading-color: #{$yellow-200};
 
   /* Main Card */
-  --form-bg: #{$grey-600};
-  --form-shadow: #ffffff10;
+  --form-bg: #1f1f1f75;
+  // --form-shadow: #ffffff10;
 
   /* Form Wrapper */
-  --form-wrapper-bg: #{$grey-700};
-  --form-wrapper-border: #{$grey-400};
+  --form-wrapper-bg: transparent;
+  --form-wrapper-border: transparent;
 
   /* Search Input */
   --search-input-bg: #{$grey-800};
