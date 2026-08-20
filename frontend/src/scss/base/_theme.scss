@@ -12,13 +12,13 @@
   --form-shadow: #00000008;
 
   /* Form Wrapper */
-  --form-wrapper-bg: #{$alabaster-100};
-  --form-wrapper-border: #{$alabaster-500};
+  --form-wrapper-bg: transparent;
+  --form-wrapper-border: transparent;
 
   /* Search Input */
-  --search-input-bg: #{$alabaster-200};
+  --search-input-bg: #{$alabaster-300};
   --search-input-focus-bg: #{$yellow-50};
-  --search-input-text: #{$grey-800};
+  --search-input-text: #{$grey-900};
   --search-input-shadow: #00000012;
 
   /* Dropdown List */
@@ -42,8 +42,8 @@
   --search-bus-icon-active: url("../assets/icons/Bus-active.png");
 
   /* Theme Toggle Button */
-  --btn-bg: #{$alabaster-200};
-  --btn-border: #{$alabaster-500};
+  --btn-bg: #{$alabaster-300};
+  --btn-border: #{$alabaster-300};
 
   /* Results */
   --results-heading-color: #{$grey-300};
@@ -97,8 +97,8 @@
   --search-bus-icon-active: url("../assets/icons/Bus-default.png");
 
   /* Theme Toggle Button */
-  --btn-bg: #{$grey-800};
-  --btn-border: #{$grey-300};
+  --btn-bg: #{$grey-700};
+  --btn-border: #{$grey-700};
 
   /* Results */
   --results-heading-color: #{$grey-50};
