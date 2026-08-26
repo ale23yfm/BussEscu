@@ -74,10 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Theme initialization
 function initTheme() {
   const savedTheme = localStorage.getItem("theme");
-  const systemPrefersDark = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches;
-  const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
+  const initialTheme = savedTheme || "dark";
 
   document.documentElement.setAttribute("data-theme", initialTheme);
   updateThemeIcon(initialTheme);
@@ -86,7 +83,7 @@ function initTheme() {
 // Theme toggle
 function toggleTheme() {
   const currentTheme =
-    document.documentElement.getAttribute("data-theme") || "light";
+    document.documentElement.getAttribute("data-theme") || "dark";
   const newTheme = currentTheme === "dark" ? "light" : "dark";
 
   document.documentElement.setAttribute("data-theme", newTheme);

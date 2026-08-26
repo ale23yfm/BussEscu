@@ -1,6 +1,61 @@
 @use "variables" as *;
 
 :root,
+/* Dark Theme (Default) */
+[data-theme="dark"] {
+  /* Global / Page */
+  --bg-color: #{$grey-500};
+  --heading-color: #{$yellow-200};
+
+  /* Main Card */
+  --form-bg: #1f1f1f75;
+  // --form-shadow: #ffffff10;
+
+  /* Form Wrapper */
+  --form-wrapper-bg: transparent;
+  --form-wrapper-border: transparent;
+
+  /* Search Input */
+  --search-input-bg: #{$grey-800};
+  --search-input-focus-bg: #{$grey-800};
+  --search-input-text: #{$grey-50};
+  --search-input-shadow: #ffffff00;
+
+  /* Dropdown List */
+  --item-separator: #{$grey-100};
+  --dropdown-item-hover-bg: #{$grey-700};
+
+  /* Search Button */
+  --search-btn-bg: #{$purple-800};
+  --search-btn-text: #{$purple-50};
+  --search-btn-bg-hover: #{$purple-700};
+  --search-btn-text-hover: #{$purple-50};
+  --search-btn-bg-active: #{$purple-50};
+  --search-btn-text-active: #{$purple-800};
+  --search-btn-shadow-tl: #00000000;
+  --search-btn-shadow-br: #ffffff00;
+  --search-btn-shadow-br-hover: #00000036;
+  --search-btn-inset-tl: #00000075;
+  --search-btn-inset-br: #ffffff25;
+  --search-bus-icon-default: url("../assets/icons/Bus-active.png");
+  --search-bus-icon-hover: url("../assets/icons/Bus-active.png");
+  --search-bus-icon-active: url("../assets/icons/Bus-default.png");
+
+  /* Theme Toggle Button */
+  --btn-bg: #{$grey-700};
+  --btn-border: #{$grey-700};
+
+  /* Results */
+  --results-heading-color: #{$grey-50};
+  --line-icon: url(../assets/icons/line-dark.png);
+  --card-bg: #{$grey-700};
+  --card-shadow: #ffffff00;
+  --badge-color: #{$purple-500};
+  --badge-bg: #{$purple-50};
+  --line-start-color: #{$grey-50};
+  --station-icon: url(../assets/icons/station-dark.png);
+}
+
 /* Light Theme */
 [data-theme="light"] {
   /* Global / Page */
@@ -54,59 +109,4 @@
   --badge-bg: #{$yellow-50};
   --line-start-color: #{$grey-900};
   --station-icon: url(../assets/icons/station-light.png);
-}
-
-/* Dark Theme */
-[data-theme="dark"] {
-  /* Global / Page */
-  --bg-color: #{$grey-500};
-  --heading-color: #{$yellow-200};
-
-  /* Main Card */
-  --form-bg: #1f1f1f75;
-  // --form-shadow: #ffffff10;
-
-  /* Form Wrapper */
-  --form-wrapper-bg: transparent;
-  --form-wrapper-border: transparent;
-
-  /* Search Input */
-  --search-input-bg: #{$grey-800};
-  --search-input-focus-bg: #{$grey-800};
-  --search-input-text: #{$grey-50};
-  --search-input-shadow: #ffffff00;
-
-  /* Dropdown List */
-  --item-separator: #{$grey-100};
-  --dropdown-item-hover-bg: #{$grey-700};
-
-  /* Search Button */
-  --search-btn-bg: #{$purple-800};
-  --search-btn-text: #{$purple-50};
-  --search-btn-bg-hover: #{$purple-700};
-  --search-btn-text-hover: #{$purple-50};
-  --search-btn-bg-active: #{$purple-50};
-  --search-btn-text-active: #{$purple-800};
-  --search-btn-shadow-tl: #00000000;
-  --search-btn-shadow-br: #ffffff00;
-  --search-btn-shadow-br-hover: #00000036;
-  --search-btn-inset-tl: #00000075;
-  --search-btn-inset-br: #ffffff25;
-  --search-bus-icon-default: url("../assets/icons/Bus-active.png");
-  --search-bus-icon-hover: url("../assets/icons/Bus-active.png");
-  --search-bus-icon-active: url("../assets/icons/Bus-default.png");
-
-  /* Theme Toggle Button */
-  --btn-bg: #{$grey-700};
-  --btn-border: #{$grey-700};
-
-  /* Results */
-  --results-heading-color: #{$grey-50};
-  --line-icon: url(../assets/icons/line-dark.png);
-  --card-bg: #{$grey-700};
-  --card-shadow: #ffffff00;
-  --badge-color: #{$purple-500};
-  --badge-bg: #{$purple-50};
-  --line-start-color: #{$grey-50};
-  --station-icon: url(../assets/icons/station-dark.png);
 }
