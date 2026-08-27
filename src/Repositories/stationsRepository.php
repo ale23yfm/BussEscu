@@ -22,7 +22,7 @@ class stationsRepository
         foreach($found as $doc)
             {
                 $stations[] = [
-                    'id' => (string) $doc['_id'],
+                    //'id' => (string) $doc['_id'],
                     'name' => $doc['name']
                 ];
             }
