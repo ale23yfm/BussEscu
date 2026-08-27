@@ -1,8 +1,9 @@
 FROM php:8.4-fpm-alpine
 
-RUN apk add --no-cache gettext nginx supervisor autoconf g++ make openssl-dev \
+RUN apk add --no-cache ca-certificates gettext nginx supervisor autoconf g++ make openssl-dev \
     && pecl install mongodb \
     && docker-php-ext-enable mongodb
+
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
