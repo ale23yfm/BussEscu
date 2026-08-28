@@ -11,8 +11,8 @@
     gap: 1.2rem;
   }
   &__icon {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 3.6rem;
+    height: 3.6rem;
     background-image: var(--line-icon);
     background-size: contain;
     background-repeat: no-repeat;
@@ -23,7 +23,7 @@
   &__title {
     color: var(--results-heading-color);
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   &__wrapper {
@@ -69,13 +69,13 @@
 
           .line-end {
             color: var(--results-heading-color);
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 500;
             letter-spacing: 4%;
           }
           .line-end-icon {
-            width: 1.8rem;
-            height: 1.8rem;
+            width: 2.8rem;
+            height: 2.8rem;
             background-image: var(--station-icon);
             background-size: contain;
             background-repeat: no-repeat;
