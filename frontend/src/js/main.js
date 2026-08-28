@@ -12,6 +12,8 @@ const mockRouteDetails = {
   48: { start: "Aurel Vlaicu", end: "Bulevardul Muncii" },
 };
 
+const endpoint = CONFIG.API_BASE_URL;
+
 // Mock connections between stations
 const mockConnections = [
   {
@@ -154,29 +156,25 @@ function setupAutocomplete(wrapperElement) {
  * @param {HTMLInputElement} inputElement
  */
 
+let apiStationsCache = [];
+
 async function fetchSuggestions(query, listElement, inputElement) {
   try {
-    const mockStations = [
-      "Aurel Vlaicu",
-      "Aurel Vlaicu Sud",
-      "Automobilia",
-      "Auchan Iris",
-      "Memorandumului Nord",
-      "Memorandumului Sud",
-      "Mehedinți",
-      "Mecanică",
-      "Arte Plastice",
-      "Avram Iancu",
-      "Piața Gării",
-      "Piața Mihai Viteazul",
-      "Iulius Mall Nord",
-      "Calea Florești",
-      "Bucium",
-      "Observatorului Sud",
-    ];
-    const filtered = mockStations.filter((station) =>
-      station.toLowerCase().includes(query.toLowerCase()),
+    if (apiStationsCache.length === 0) {
+      const response = await fetch(`${endpoint}/v1/stations/`);
+
+      if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      apiStationsCache = data.map((station) => station.name);
+    }
+
+    const filtered = apiStationsCache.filter((stationName) =>
+      stationName.toLowerCase().includes(query.toLowerCase()),
     );
+
     renderSuggestions(filtered, listElement, inputElement);
   } catch (error) {
     console.error("Error fetching stations: ", error);
