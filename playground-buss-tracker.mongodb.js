@@ -1,73 +1,167 @@
-use('bus_tracker');
+use("bus_tracker");
 
 // Delete what was created previously to avoid duplicates
 db.stations.drop();
 db.lines.drop();
-db.connections.drop();
 
-// Create the stations collection with a geospatial index
-db.createCollection('stations');
+const stationNames = [
+  "DisP. Clăbucet",
+  "Primăverii",
+  "Minerva",
+  "Zorilor",
+  "Calea Mănăștur",
+  "Agronomia",
+  "Calea Moților",
+  "Memorandumului Sud",
+  "Victoria",
+  "Regionala CFR",
+  "Biserica Sf. Petru",
+  "Piața Mărăști",
+  "Mareșal C-tin Prezan",
+  "Siretului",
+  "Pod Someșeni",
+  "Disp. IRA",
+  "EXPO Transilvania",
+  "Aurel Vlaicu",
+  "Arte Plastice",
+  "Cîmpului",
+  "Someș",
+  "Constanța",
+  "Sora",
+  "Memorandumului Nord",
+  "Spitalul de Copii",
+  "Fabrica de Bere",
+  "Grădini Mănăștur",
+  "Ion Mester",
+  "Izlazului S",
+  "Disp. Grigorescu",
+  "Radio România Cluj",
+  "Petuniei",
+  "Iancu de Hunedoara",
+  "Giuseppe Garibaldi",
+  "Cluj Arena",
+  "Hotel Radisson Blu",
+  "Disp. Unirii",
+  "Colegiul Pedagogic",
+  "Iulius Mall Est",
+  "Campus Universitar Est",
+  "Crinului",
+  "Taberei",
+  "Calea Florești",
+  "Nodul Nord",
+  "VIVO! Cluj-Napoca Sos",
+];
 
-// Insert a couple of sample stations
-db.stations.insertMany([
+db.createCollection("stations");
+
+db.stations.insertMany(stationNames.map(name => ({ name })));
+console.log(`Inserted ${stationNames.length} stations.`);
+
+const allStations = db.stations.find().toArray();
+const stationMap = {};
+
+allStations.forEach(s => {
+  stationMap[s.name] = s._id;
+});
+
+function toIds(names)
+{
+  return names.map(name => {
+    const id = stationMap[name];
+    if (!id) {
+      console.log(`  ⚠️ Station not found: "${name}"`); // catches typos immediately
+    }
+    return id;
+  });
+}
+
+// Create lines collection with all stations
+db.createCollection("lines");
+
+db.lines.insertMany([
   {
-    name: 'Aurel Vlaicu'
+    number: "6",
+    stations: toIds([
+      "DisP. Clăbucet",
+      "Primăverii",
+      "Minerva",
+      "Zorilor",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni",
+    ]),
   },
   {
-    name: 'Memorandumului Nord'
+    number: "7",
+    stations: toIds([
+      "Disp. IRA",
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Cîmpului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Ion Mester",
+      "Izlazului S",
+    ]),
   },
-  {
-    name: 'Arte Plastice'
-  }
+    {
+      number: "30",
+      stations: toIds([
+        "Disp. Grigorescu",
+        "Radio România Cluj",
+        "Petuniei",
+        "Iancu de Hunedoara",
+        "Giuseppe Garibaldi",
+        "Cluj Arena",
+        "Hotel Radisson Blu",
+        "Calea Moților",
+        "Memorandumului Sud",
+        "Victoria",
+        "Regionala CFR",
+        "Biserica Sf. Petru",
+        "Piața Mărăști",
+        "Mareșal C-tin Prezan",
+        "Siretului",
+        "Pod Someșeni",
+        "Disp. IRA",
+      ]),
+    },
+    {
+      number: "24B",
+      stations: toIds([
+        "Disp. Unirii",
+        "Colegiul Pedagogic",
+        "Iulius Mall Est",
+        "Campus Universitar Est",
+        "Arte Plastice",
+        "Crinului",
+        "Someș",
+        "Constanța",
+        "Sora",
+        "Memorandumului Nord",
+        "Spitalul de Copii",
+        "Fabrica de Bere",
+        "Grădini Mănăștur",
+        "Taberei",
+        "Calea Florești",
+        "Nodul Nord",
+        "VIVO! Cluj-Napoca Sos",
+      ]),
+    }
 ]);
 
-// Look up your existing station _ids by name
-const aurelVlaicu = db.stations.findOne({ name: 'Aurel Vlaicu' });
-const memorandumuluiNord = db.stations.findOne({ name: 'Memorandumului Nord' });
-const artePlastice = db.stations.findOne({ name: 'Arte Plastice' }); // fixed typo from "PLastice"
-
-db.connections.insertMany([
-  {
-    from: aurelVlaicu._id,
-    to: memorandumuluiNord._id,
-    lines: ['6', '30']
-  },
-  {
-    from: artePlastice._id,
-    to: memorandumuluiNord._id,
-    lines: ['24b', '6', '30']
-  },
-  {
-    from: aurelVlaicu._id,
-    to: artePlastice._id,
-    lines: ['4', '5', '6', '30', '46b']
-  }
-]);
-
-console.log('Connections:', 
-  db.connections.aggregate([
-  {
-    $lookup: {
-      from: 'stations',
-      localField: 'from',
-      foreignField: '_id',
-      as: 'fromStation'
-    }
-  },
-  {
-    $lookup: {
-      from: 'stations',
-      localField: 'to',
-      foreignField: '_id',
-      as: 'toStation'
-    }
-  },
-  {
-    $project: {
-      _id: 0,
-      from: { $arrayElemAt: ['$fromStation.name', 0] },
-      to: { $arrayElemAt: ['$toStation.name', 0] },
-      lines: 1
-    }
-  }
-]).toArray());
+console.log("Done. Check above for any '⚠️' warnings before trusting the data.");
