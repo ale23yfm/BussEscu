@@ -5,7 +5,7 @@ db.stations.drop();
 db.lines.drop();
 
 const stationNames = [
-  "DisP. Clăbucet",
+  "Disp. Clăbucet",
   "Primăverii",
   "Minerva",
   "Zorilor",
@@ -82,7 +82,7 @@ db.lines.insertMany([
   {
     number: "6",
     stations: toIds([
-      "DisP. Clăbucet",
+      "Disp. Clăbucet",
       "Primăverii",
       "Minerva",
       "Zorilor",
