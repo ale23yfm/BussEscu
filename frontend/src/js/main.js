@@ -156,9 +156,51 @@ function setupAutocomplete(wrapperElement) {
  * @param {HTMLInputElement} inputElement
  */
 
+/**
+ * Show loading spinner inside dropdown list
+ * @param {HTMLElement} listElement
+ */
+function showDropdownLoader(listElement) {
+  listElement.replaceChildren();
+
+  const item = document.createElement("li");
+  item.className = "dropdown-wrapper__item dropdown-wrapper__item--loader";
+  item.style.textAlign = "center";
+  item.style.padding = "1.2rem";
+
+  const loader = document.createElement("span");
+  loader.className = "loader loader--small";
+
+  item.appendChild(loader);
+  listElement.appendChild(item);
+  listElement.classList.remove("hidden");
+}
+
+/**
+ * Show loading spinner inside route results wrapper
+ * @param {HTMLElement} resultsWrapper
+ */
+function showResultsLoader(resultsWrapper) {
+  resultsWrapper.replaceChildren();
+
+  const container = document.createElement("div");
+  container.className = "results-loader-container";
+  container.style.display = "flex";
+  container.style.justifyContent = "center";
+  container.style.padding = "2.4rem";
+
+  const loader = document.createElement("span");
+  loader.className = "loader";
+
+  container.appendChild(loader);
+  resultsWrapper.appendChild(container);
+}
+
 let apiStationsCache = [];
 
 async function fetchSuggestions(query, listElement, inputElement) {
+  showDropdownLoader(listElement);
+
   try {
     if (apiStationsCache.length === 0) {
       const response = await fetch(`${endpoint}/v1/stations/`);
@@ -178,6 +220,7 @@ async function fetchSuggestions(query, listElement, inputElement) {
     renderSuggestions(filtered, listElement, inputElement);
   } catch (error) {
     console.error("Error fetching stations: ", error);
+    hideSuggestions(listElement);
   }
 }
 
@@ -231,77 +274,80 @@ function handleSearch() {
 
   if (!resultsWrapper || !resultsHeading || !resultsTitle) return;
 
-  // Clear previous results
-  resultsWrapper.replaceChildren();
-
-  // Show heading section upon search trigger
+  // Show heading section and loader upon search trigger
   resultsHeading.classList.remove("hidden");
+  showResultsLoader(resultsWrapper);
 
   const startStation = searchInputs[0] ? searchInputs[0].value.trim() : "";
   const endStation = searchInputs[1] ? searchInputs[1].value.trim() : "";
 
-  // 1. Both stations must be selected
-  if (!startStation || !endStation) {
-    resultsTitle.textContent = "Selectează stațiile de plecare și sosire";
-    if (resultsIcon) resultsIcon.style.display = "none";
-    return;
-  }
+  setTimeout(() => {
+    resultsWrapper.replaceChildren();
 
-  const isSameStation = startStation.toLowerCase() === endStation.toLowerCase();
-  const connection = findConnection(startStation, endStation);
+    // 1. Both stations must be selected
+    if (!startStation || !endStation) {
+      resultsTitle.textContent = "Selectează stațiile de plecare și sosire";
+      if (resultsIcon) resultsIcon.style.display = "none";
+      return;
+    }
 
-  // 2. Same station or no direct line connection found
-  if (
-    isSameStation ||
-    !connection ||
-    !connection.lines ||
-    connection.lines.length === 0
-  ) {
-    resultsTitle.textContent = "Nicio linie validă";
-    if (resultsIcon) resultsIcon.style.display = "none";
-    return;
-  }
+    const isSameStation =
+      startStation.toLowerCase() === endStation.toLowerCase();
+    const connection = findConnection(startStation, endStation);
 
-  // 3. Valid lines!
-  resultsTitle.textContent = "Linii valide";
-  if (resultsIcon) resultsIcon.style.display = "block";
+    // 2. Same station or no direct line connection found
+    if (
+      isSameStation ||
+      !connection ||
+      !connection.lines ||
+      connection.lines.length === 0
+    ) {
+      resultsTitle.textContent = "Nicio linie validă";
+      if (resultsIcon) resultsIcon.style.display = "none";
+      return;
+    }
 
-  connection.lines.forEach((lineNo) => {
-    const details = mockRouteDetails[lineNo] || {
-      start: startStation,
-      end: endStation,
-    };
+    // 3. Valid lines!
+    resultsTitle.textContent = "Linii valide";
+    if (resultsIcon) resultsIcon.style.display = "block";
 
-    const card = document.createElement("div");
-    card.classList.add("results__wrapper__card");
+    connection.lines.forEach((lineNo) => {
+      const details = mockRouteDetails[lineNo] || {
+        start: startStation,
+        end: endStation,
+      };
 
-    const badge = document.createElement("span");
-    badge.className = "badge line-number";
-    badge.textContent = lineNo;
+      const card = document.createElement("div");
+      card.classList.add("results__wrapper__card");
 
-    const lineDetails = document.createElement("div");
-    lineDetails.classList.add("line-details");
+      const badge = document.createElement("span");
+      badge.className = "badge line-number";
+      badge.textContent = lineNo;
 
-    const lineStart = document.createElement("h3");
-    lineStart.classList.add("line-start");
-    lineStart.textContent = details.start;
+      const lineDetails = document.createElement("div");
+      lineDetails.classList.add("line-details");
 
-    const lineEndWrapper = document.createElement("div");
-    lineEndWrapper.classList.add("line-end-wrapper");
+      const lineStart = document.createElement("h3");
+      lineStart.classList.add("line-start");
+      lineStart.textContent = details.start;
 
-    const lineEndIcon = document.createElement("span");
-    lineEndIcon.classList.add("line-end-icon");
+      const lineEndWrapper = document.createElement("div");
+      lineEndWrapper.classList.add("line-end-wrapper");
 
-    const lineEnd = document.createElement("h3");
-    lineEnd.classList.add("line-end");
-    lineEnd.textContent = details.end;
+      const lineEndIcon = document.createElement("span");
+      lineEndIcon.classList.add("line-end-icon");
 
-    lineEndWrapper.append(lineEndIcon, lineEnd);
-    lineDetails.append(lineStart, lineEndWrapper);
-    card.append(badge, lineDetails);
+      const lineEnd = document.createElement("h3");
+      lineEnd.classList.add("line-end");
+      lineEnd.textContent = details.end;
 
-    resultsWrapper.append(card);
-  });
+      lineEndWrapper.append(lineEndIcon, lineEnd);
+      lineDetails.append(lineStart, lineEndWrapper);
+      card.append(badge, lineDetails);
+
+      resultsWrapper.append(card);
+    });
+  }, 400);
 }
 
 /**
