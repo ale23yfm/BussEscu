@@ -54,6 +54,13 @@
   --badge-bg: #{$purple-50};
   --line-start-color: #{$grey-50};
   --station-icon: url(../assets/icons/station-dark.png);
+
+  /* Loader */
+  --loader-color-1: #{$purple-900};
+  --loader-color-2: #{$purple-700};
+  --loader-color-3: #{$purple-500};
+  --loader-color-4: #{$yellow-300};
+  --loader-color-5: #{$yellow-500};
 }
 
 /* Light Theme */
@@ -109,4 +116,11 @@
   --badge-bg: #{$yellow-50};
   --line-start-color: #{$grey-900};
   --station-icon: url(../assets/icons/station-light.png);
+
+  /* Loader */
+  --loader-color-1: #{$purple-100};
+  --loader-color-2: #{$purple-300};
+  --loader-color-3: #{$purple-500};
+  --loader-color-4: #{$yellow-400};
+  --loader-color-5: #{$yellow-600};
 }

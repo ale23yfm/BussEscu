@@ -1,0 +1,24 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.loader {
+  --size: 1px;
+
+  width: calc(48 * var(--size));
+  height: calc(48 * var(--size));
+  border: calc(4 * var(--size)) solid;
+  border-color: var(--loader-color-1) var(--loader-color-2) var(--loader-color-3) var(--loader-color-4);
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: animloader 1s linear infinite;
+
+  &--small {
+    --size: 0.5px;
+  }
+
+  &--center {
+    display: block;
+    margin: 1.5rem auto;
+  }
+}

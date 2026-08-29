@@ -23,3 +23,21 @@
     opacity: 0;
   }
 }
+
+@keyframes animloader {
+  0% {
+    border-color: var(--loader-color-5) var(--loader-color-1) var(--loader-color-2) var(--loader-color-3);
+  }
+  25% {
+    border-color: var(--loader-color-3) var(--loader-color-5) var(--loader-color-1) var(--loader-color-2);
+  }
+  50% {
+    border-color: var(--loader-color-2) var(--loader-color-3) var(--loader-color-5) var(--loader-color-1);
+  }
+  75% {
+    border-color: var(--loader-color-1) var(--loader-color-2) var(--loader-color-3) var(--loader-color-5);
+  }
+  100% {
+    border-color: var(--loader-color-5) var(--loader-color-1) var(--loader-color-2) var(--loader-color-3);
+  }
+}
