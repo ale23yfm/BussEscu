@@ -48,8 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dropdownWrappers = document.querySelectorAll(".dropdown-wrapper");
   dropdownWrappers.forEach((wrapper) => {
-    setupAutocomplete(wrapper);
+    if (wrapper.querySelector("#lines-input")) {
+      setupLinesAutocomplete(wrapper);
+    } else {
+      setupAutocomplete(wrapper);
+    }
   });
+
+  // Preload lines data from lines.json
+  loadLinesData();
 
   // Close dropdown on outside click
   document.addEventListener("click", (e) => {
@@ -110,6 +117,70 @@ function updateThemeIcon(theme) {
 }
 
 /**
+ * Capitalizează prima literă a fiecărui cuvânt, transformă restul literelor în lowercase
+ * și păstrează cuvintele de legătură (de, pe, din, în, etc.) în lowercase dacă nu sunt primul cuvânt.
+ *
+ * @param {string} str - Textul introdus sau denumirea stației
+ * @returns {string} - Textul formatat (ex: "facultatea DE litere" -> "Facultatea de Litere")
+ */
+function capitalizeStationName(str) {
+  if (!str || typeof str !== "string") return "";
+
+  // Cuvinte de legătură (prepoziții / conjuncții) care rămân cu litere mici
+  const stopWords = new Set([
+    "de",
+    "pe",
+    "din",
+    "in",
+    "în",
+    "la",
+    "cu",
+    "sub",
+    "spre",
+    "peste",
+    "după",
+    "dupa",
+    "și",
+    "si",
+    "al",
+    "a",
+    "ai",
+    "ale",
+  ]);
+
+  return str
+    .trim()
+    .split(/\s+/)
+    .map((word, index) => {
+      const lowerWord = word.toLowerCase();
+
+      // Primul cuvânt este întotdeauna capitalizat;
+      // Cuvintele de legătură din interior rămân lowercase
+      if (index > 0 && stopWords.has(lowerWord)) {
+        return lowerWord;
+      }
+
+      // Gestionează și cuvintele legate prin cratimă (ex: "C-tin" sau "Sân-Mărghita")
+      if (word.includes("-")) {
+        return word
+          .split("-")
+          .map((part, pIdx) => {
+            const lowerPart = part.toLowerCase();
+            if (pIdx > 0 && stopWords.has(lowerPart)) {
+              return lowerPart;
+            }
+            return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+          })
+          .join("-");
+      }
+
+      // Prima literă mare, restul mici
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
+}
+
+/**
  * Init autocomplete logic for single dropdown wrapper
  * @param {HTMLElement} wrapperElement
  */
@@ -129,22 +200,28 @@ function setupAutocomplete(wrapperElement) {
 
     clearTimeout(debounceTimer);
 
-    if (query.length < 2) {
+    if (query.length < 3) {
       hideSuggestions(suggestionsList);
       return;
     }
 
-    // Call fetchSuggestions after a debounce delay
+    // Call fetchSuggestions after a debounce delay (300ms)
     debounceTimer = setTimeout(() => {
       fetchSuggestions(query, suggestionsList, input);
-    }, 500);
+    }, 300);
   });
 
   input.addEventListener("focus", () => {
     const query = input.value.trim();
 
-    if (query.length >= 2) {
+    if (query.length >= 3) {
       fetchSuggestions(query, suggestionsList, input);
+    }
+  });
+
+  input.addEventListener("blur", () => {
+    if (input.value) {
+      input.value = capitalizeStationName(input.value);
     }
   });
 }
@@ -240,12 +317,13 @@ function renderSuggestions(stations, listElement, inputElement) {
   }
 
   stations.forEach((station) => {
+    const formattedStation = capitalizeStationName(station);
     const li = document.createElement("li");
     li.classList.add("dropdown-wrapper__item");
-    li.textContent = station;
+    li.textContent = formattedStation;
 
     li.addEventListener("click", () => {
-      inputElement.value = station;
+      inputElement.value = formattedStation;
       hideSuggestions(listElement);
     });
 
@@ -327,19 +405,11 @@ function handleSearch() {
       const lineDetails = document.createElement("div");
       lineDetails.classList.add("line-details");
 
-      const lineStart = document.createElement("h3");
-      lineStart.classList.add("line-start");
-      lineStart.textContent = details.start;
-
       const lineEndWrapper = document.createElement("div");
       lineEndWrapper.classList.add("line-end-wrapper");
 
       const lineEndIcon = document.createElement("span");
       lineEndIcon.classList.add("line-end-icon");
-
-      const lineEnd = document.createElement("h3");
-      lineEnd.classList.add("line-end");
-      lineEnd.textContent = details.end;
 
       lineEndWrapper.append(lineEndIcon, lineEnd);
       lineDetails.append(lineStart, lineEndWrapper);
@@ -370,4 +440,217 @@ function findConnection(fromStation, toStation) {
           conn.to.toLowerCase() === fromLower),
     ) || null
   );
+}
+
+/**
+ * Global lines data cache
+ */
+let linesDataCache = [];
+
+/**
+ * Load lines data from local JSON asset
+ * @returns {Promise<Array>}
+ */
+async function loadLinesData() {
+  if (linesDataCache.length > 0) return linesDataCache;
+
+  try {
+    const response = await fetch("./assets/data/lines.json");
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status}`);
+    }
+    linesDataCache = await response.json();
+    return linesDataCache;
+  } catch (error) {
+    console.error("Eroare la încărcarea lines.json:", error);
+    return [];
+  }
+}
+
+/**
+ * Setup autocomplete & search for lines selector dropdown
+ * @param {HTMLElement} wrapperElement
+ */
+function setupLinesAutocomplete(wrapperElement) {
+  const linesInput = wrapperElement.querySelector("#lines-input");
+  const suggestionsList = wrapperElement.querySelector(
+    ".dropdown-wrapper__list",
+  );
+
+  if (!linesInput || !suggestionsList) return;
+
+  async function getAvailableLines() {
+    const data = await loadLinesData();
+    const unique = Array.from(
+      new Set(data.map((item) => String(item.number).trim())),
+    );
+
+    return unique.sort((a, b) =>
+      a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }),
+    );
+  }
+
+  async function filterAndRenderLines(query = "") {
+    const allLines = await getAvailableLines();
+    const cleanQuery = query
+      .replace(/^linia\s*/i, "")
+      .trim()
+      .toLowerCase();
+
+    const filtered = cleanQuery
+      ? allLines.filter((lineNo) => lineNo.toLowerCase().includes(cleanQuery))
+      : allLines;
+
+    renderLineSuggestions(filtered, suggestionsList, linesInput);
+  }
+
+  linesInput.addEventListener("focus", () => {
+    filterAndRenderLines(linesInput.value.trim());
+  });
+
+  linesInput.addEventListener("input", (e) => {
+    filterAndRenderLines(e.target.value.trim());
+  });
+}
+
+/**
+ * Render lines autocomplete suggestions list
+ * @param {Array<string>} lines
+ * @param {HTMLElement} listElement
+ * @param {HTMLInputElement} inputElement
+ */
+function renderLineSuggestions(lines, listElement, inputElement) {
+  listElement.replaceChildren();
+
+  if (lines.length === 0) {
+    hideSuggestions(listElement);
+    return;
+  }
+
+  lines.forEach((lineNo) => {
+    const li = document.createElement("li");
+    li.className = "dropdown-wrapper__item";
+    li.textContent = `Linia ${lineNo}`;
+
+    li.addEventListener("click", () => {
+      inputElement.value = `Linia ${lineNo}`;
+      hideSuggestions(listElement);
+      renderLineCircuit(lineNo);
+    });
+
+    listElement.appendChild(li);
+  });
+
+  listElement.classList.remove("hidden");
+}
+
+/**
+ * Dynamically render route stations circuit for Tur and Retur
+ * @param {string} lineNumber
+ */
+function renderLineCircuit(lineNumber) {
+  const linesWrapper = document.querySelector(".lines-wrapper");
+  const lineStartEl = document.querySelector(".line-start");
+  const lineEndEl = document.querySelector(".line-end");
+  const returWrapper = document.querySelector(".retur-wrapper");
+  const turWrapper = document.querySelector(".tur-wrapper");
+
+  if (!linesWrapper || !returWrapper || !turWrapper) return;
+
+  if (!lineNumber) {
+    linesWrapper.classList.add("hidden");
+    return;
+  }
+
+  returWrapper.replaceChildren();
+  turWrapper.replaceChildren();
+
+  const cleanLineNo = String(lineNumber)
+    .replace(/^linia\s*/i, "")
+    .trim()
+    .toLowerCase();
+
+  const turData = linesDataCache.find(
+    (item) =>
+      String(item.number).trim().toLowerCase() === cleanLineNo &&
+      String(item.direction).toLowerCase() === "tur",
+  );
+
+  const returData = linesDataCache.find(
+    (item) =>
+      String(item.number).trim().toLowerCase() === cleanLineNo &&
+      String(item.direction).toLowerCase() === "retur",
+  );
+
+  const turStations = turData ? turData.stations : [];
+  const returStations = returData ? returData.stations : [];
+
+  const maxRows = Math.max(turStations.length, returStations.length);
+  if (maxRows === 0) {
+    linesWrapper.classList.add("hidden");
+    return;
+  }
+
+  // Show circuit card once valid line data is ready
+  linesWrapper.classList.remove("hidden");
+
+  // 1. Update Start and End Station Headings
+  if (lineStartEl) {
+    lineStartEl.textContent =
+      turStations[0] ||
+      (returStations.length > 0
+        ? returStations[returStations.length - 1]
+        : "Statie inceput");
+  }
+
+  if (lineEndEl) {
+    lineEndEl.textContent =
+      turStations.length > 0
+        ? turStations[turStations.length - 1]
+        : returStations[0] || "Statie sfarsit";
+  }
+
+  // 2. Populate Retur column (all stations have upward arrow nodes positioned on the separator border)
+  returStations.forEach((station) => {
+    const article = document.createElement("article");
+    article.className = "linie-retur";
+
+    const stationText = document.createElement("span");
+    stationText.className = "station-name";
+    stationText.textContent = station;
+    article.appendChild(stationText);
+
+    const node = document.createElement("div");
+    node.className = "circuit-node circuit-node--retur";
+
+    const arrow = document.createElement("i");
+    arrow.className = "ri-arrow-up-s-fill";
+
+    node.appendChild(arrow);
+    article.appendChild(node);
+
+    returWrapper.appendChild(article);
+  });
+
+  // 3. Populate Tur column (all stations have downward arrow nodes positioned on the separator border)
+  turStations.forEach((station) => {
+    const article = document.createElement("article");
+    article.className = "linie-tur";
+
+    const stationText = document.createElement("span");
+    stationText.className = "station-name";
+    stationText.textContent = station;
+    article.appendChild(stationText);
+
+    const node = document.createElement("div");
+    node.className = "circuit-node circuit-node--tur";
+
+    const arrow = document.createElement("i");
+    arrow.className = "ri-arrow-down-s-fill";
+
+    node.appendChild(arrow);
+    article.appendChild(node);
+
+    turWrapper.appendChild(article);
+  });
 }

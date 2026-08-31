@@ -24,7 +24,7 @@
   /* Dropdown List */
   --item-separator: #{$grey-100};
   --dropdown-item-hover-bg: #{$grey-700};
-
+  --dropdown-bg: #{$purple-500};
   /* Search Button */
   --search-btn-bg: #{$purple-800};
   --search-btn-text: #{$purple-50};
@@ -61,6 +61,19 @@
   --loader-color-3: #{$purple-500};
   --loader-color-4: #{$yellow-300};
   --loader-color-5: #{$yellow-500};
+
+  /* Lines & Circuit */
+  --separator-line: #{$purple-500};
+  --separator-bg: #{$purple-50};
+  --circuit-line-color: #{$purple-500};
+  --circuit-station-text: #{$grey-50};
+  --circuit-terminal-bg: #{$purple-50};
+  --circuit-terminal-border: #{$purple-500};
+  --circuit-terminal-text: #{$purple-500};
+  --circuit-terminal-icon: #{$purple-500};
+  --circuit-node-bg: #{$purple-50};
+  --circuit-node-border: #{$purple-500};
+  --circuit-node-icon: #{$purple-500};
 }
 
 /* Light Theme */
@@ -86,6 +99,7 @@
   /* Dropdown List */
   --item-separator: #{$grey-100};
   --dropdown-item-hover-bg: #{$yellow-100};
+  --dropdown-bg: #{$yellow-500};
 
   /* Search Button */
   --search-btn-bg: #{$purple-50};
@@ -123,4 +137,17 @@
   --loader-color-3: #{$purple-500};
   --loader-color-4: #{$yellow-400};
   --loader-color-5: #{$yellow-600};
+
+  /* Lines & Circuit */
+  --separator-line: #{$yellow-500};
+  --separator-bg: #{$yellow-50};
+  --circuit-line-color: #{$yellow-500};
+  --circuit-station-text: #{$grey-900};
+  --circuit-terminal-bg: #{$yellow-50};
+  --circuit-terminal-border: #{$yellow-500};
+  --circuit-terminal-text: #{$yellow-500};
+  --circuit-terminal-icon: #{$yellow-500};
+  --circuit-node-bg: #{$yellow-50};
+  --circuit-node-border: #{$yellow-500};
+  --circuit-node-icon: #{$yellow-500};
 }
