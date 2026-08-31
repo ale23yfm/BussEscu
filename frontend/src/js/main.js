@@ -117,6 +117,70 @@ function updateThemeIcon(theme) {
 }
 
 /**
+ * Capitalizează prima literă a fiecărui cuvânt, transformă restul literelor în lowercase
+ * și păstrează cuvintele de legătură (de, pe, din, în, etc.) în lowercase dacă nu sunt primul cuvânt.
+ *
+ * @param {string} str - Textul introdus sau denumirea stației
+ * @returns {string} - Textul formatat (ex: "facultatea DE litere" -> "Facultatea de Litere")
+ */
+function capitalizeStationName(str) {
+  if (!str || typeof str !== "string") return "";
+
+  // Cuvinte de legătură (prepoziții / conjuncții) care rămân cu litere mici
+  const stopWords = new Set([
+    "de",
+    "pe",
+    "din",
+    "in",
+    "în",
+    "la",
+    "cu",
+    "sub",
+    "spre",
+    "peste",
+    "după",
+    "dupa",
+    "și",
+    "si",
+    "al",
+    "a",
+    "ai",
+    "ale",
+  ]);
+
+  return str
+    .trim()
+    .split(/\s+/)
+    .map((word, index) => {
+      const lowerWord = word.toLowerCase();
+
+      // Primul cuvânt este întotdeauna capitalizat;
+      // Cuvintele de legătură din interior rămân lowercase
+      if (index > 0 && stopWords.has(lowerWord)) {
+        return lowerWord;
+      }
+
+      // Gestionează și cuvintele legate prin cratimă (ex: "C-tin" sau "Sân-Mărghita")
+      if (word.includes("-")) {
+        return word
+          .split("-")
+          .map((part, pIdx) => {
+            const lowerPart = part.toLowerCase();
+            if (pIdx > 0 && stopWords.has(lowerPart)) {
+              return lowerPart;
+            }
+            return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+          })
+          .join("-");
+      }
+
+      // Prima literă mare, restul mici
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
+}
+
+/**
  * Init autocomplete logic for single dropdown wrapper
  * @param {HTMLElement} wrapperElement
  */
@@ -136,22 +200,28 @@ function setupAutocomplete(wrapperElement) {
 
     clearTimeout(debounceTimer);
 
-    if (query.length < 2) {
+    if (query.length < 3) {
       hideSuggestions(suggestionsList);
       return;
     }
 
-    // Call fetchSuggestions after a debounce delay
+    // Call fetchSuggestions after a debounce delay (300ms)
     debounceTimer = setTimeout(() => {
       fetchSuggestions(query, suggestionsList, input);
-    }, 500);
+    }, 300);
   });
 
   input.addEventListener("focus", () => {
     const query = input.value.trim();
 
-    if (query.length >= 2) {
+    if (query.length >= 3) {
       fetchSuggestions(query, suggestionsList, input);
+    }
+  });
+
+  input.addEventListener("blur", () => {
+    if (input.value) {
+      input.value = capitalizeStationName(input.value);
     }
   });
 }
@@ -247,12 +317,13 @@ function renderSuggestions(stations, listElement, inputElement) {
   }
 
   stations.forEach((station) => {
+    const formattedStation = capitalizeStationName(station);
     const li = document.createElement("li");
     li.classList.add("dropdown-wrapper__item");
-    li.textContent = station;
+    li.textContent = formattedStation;
 
     li.addEventListener("click", () => {
-      inputElement.value = station;
+      inputElement.value = formattedStation;
       hideSuggestions(listElement);
     });
 
