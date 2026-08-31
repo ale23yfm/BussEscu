@@ -1,0 +1,2714 @@
+[
+  {
+    "number": "102L",
+    "direction": "tur",
+    "stations": [
+      "Disp. Bucium",
+      "Baza Unirea",
+      "Parâng",
+      "Calvaria",
+      "Plopilor Sud",
+      "Uzinei Electrice",
+      "Cluj Arena",
+      "Parcul Central",
+      "George Barițiu",
+      "Facultatea de Litere",
+      "Piața Gării Vechi",
+      "Libertatea Est",
+      "Primăria IRIS",
+      "Oașului Sud",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "TERMOROM Sud",
+      "ERS CUG Sud",
+      "UNIMET Sud",
+      "AMBERGER Sud",
+      "DEPOU Tramvaie"
+    ]
+  },
+  {
+    "number": "102L",
+    "direction": "retur",
+    "stations": [
+      "DEPOU Tramvaie",
+      "AMBERGER Nord",
+      "UNIMET Nord",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "Oașului Nord",
+      "IRIS Nord",
+      "Piața Karl Liebknecht",
+      "Libertatea Vest",
+      "Piața Gării Noi",
+      "Horea",
+      "Opera Maghiară Est",
+      "Splaiul Independenței",
+      "Sala Sporturilor",
+      "Plopilor Nord",
+      "Grigore Alexandrescu",
+      "Răvașului",
+      "Clăbucet",
+      "Disp. Bucium"
+    ]
+  },
+  {
+    "number": "A1",
+    "direction": "tur",
+    "stations": [
+      "Aeroport Terminal",
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Central",
+      "Regionala CFR",
+      "Piața Mihai Viteazul Sud",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni",
+      "Aeroport Terminal"
+    ]
+  },
+  {
+    "number": "102",
+    "direction": "tur",
+    "stations": [
+      "Baza Unirea",
+      "Parâng",
+      "Calvaria",
+      "Plopilor Sud",
+      "Cluj Arena",
+      "Uzinei Electrice",
+      "George Barițiu",
+      "Parcul Central",
+      "Facultatea de Litere",
+      "Piața Gării Vechi",
+      "Libertatea Est",
+      "Primăria IRIS",
+      "IRIS Sud",
+      "Oașului Sud",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "TERMOROM Sud"
+    ]
+  },
+  {
+    "number": "102",
+    "direction": "retur",
+    "stations": [
+      "UNIMET Nord",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "Oașului Nord",
+      "IRIS Nord",
+      "Piața Karl Liebknecht",
+      "Libertatea Vest",
+      "Piața Gării Noi",
+      "Opera Maghiară Est",
+      "Splaiul Independenței",
+      "Sala Sporturilor",
+      "Plopilor Nord",
+      "Grigore Alexandrescu",
+      "Răvașului",
+      "Clăbucet",
+      "Disp. Bucium"
+    ]
+  },
+  {
+    "number": "101",
+    "direction": "tur",
+    "stations": [
+      "Disp. Bucium",
+      "Baza Unirea",
+      "Uzinei Electrice",
+      "Parâng",
+      "Plopilor Sud",
+      "Calvaria",
+      "Facultatea de Litere",
+      "Parcul Central",
+      "Cluj Arena",
+      "Piața Gării Nord",
+      "George Barițiu"
+    ]
+  },
+  {
+    "number": "101",
+    "direction": "retur",
+    "stations": [
+      "Opera Maghiară Est",
+      "Splaiul Independenței",
+      "Piața Gării Noi",
+      "Sala Sporturilor",
+      "Horea",
+      "Grigore Alexandrescu",
+      "Plopilor Nord",
+      "Răvașului",
+      "Clăbucet"
+    ]
+  },
+  {
+    "number": "101A",
+    "direction": "tur",
+    "stations": [
+      "Disp. Bucium",
+      "Baza Unirea",
+      "Calvaria",
+      "Plopilor Sud",
+      "—4 Sigismund",
+      "Uzinei Electrice",
+      "Hotel Napoca",
+      "Dragalina Sud",
+      "Facultatea de Litere",
+      "Piața Gării Noi"
+    ]
+  },
+  {
+    "number": "101A",
+    "direction": "retur",
+    "stations": [
+      "Piața Gării Noi",
+      "Horea",
+      "Dragalina Nord",
+      "Octavian Goga",
+      "Piața 14 Iulie Nord",
+      "Plopilor Nord",
+      "Grigore Alexandrescu",
+      "Răvașului",
+      "Clăbucet",
+      "Disp. Bucium"
+    ]
+  },
+  {
+    "number": "100L",
+    "direction": "tur",
+    "stations": [
+      "Piața Gării Noi",
+      "Libertatea Est",
+      "Primăria IRIS",
+      "Oașului Sud",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "TERMOROM Sud",
+      "ERS CUG Sud",
+      "UNIMET Sud",
+      "AMBERGER Sud",
+      "DEPOU Tramvaie"
+    ]
+  },
+  {
+    "number": "100L",
+    "direction": "retur",
+    "stations": [
+      "DEPOU Tramvaie",
+      "AMBERGER Nord",
+      "UNIMET Nord",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "Oașului Nord",
+      "IRIS Nord",
+      "Piața Karl Liebknecht",
+      "Libertatea Vest",
+      "Piața Gării Noi"
+    ]
+  },
+  {
+    "number": "100",
+    "direction": "tur",
+    "stations": [
+      "Libertatea Est",
+      "Piața Gării Vechi",
+      "Oașului Sud",
+      "Primăria IRIS",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "IRIS Sud",
+      "TERMOROM Sud",
+      "ERS CUG Sud",
+      "UNIMET Sud"
+    ]
+  },
+  {
+    "number": "100",
+    "direction": "retur",
+    "stations": [
+      "TERMOROM Nord",
+      "ERS CUG Nord",
+      "SINTEROM Nord",
+      "UNIMET Nord",
+      "TERAPIA Nord",
+      "Oașului Nord",
+      "Libertatea Vest",
+      "IRIS Nord",
+      "Piața Karl Liebknecht",
+      "Piața Gării Noi"
+    ]
+  },
+  {
+    "number": "57L",
+    "direction": "tur",
+    "stations": [
+      "Alverna Est",
+      "Mălinului Est",
+      "C-tin Brâncoveanu Est",
+      "Piața Cipariu Est",
+      "Septimiu Albini Sud",
+      "Nicolae Titulescu",
+      "Herculane",
+      "Borsec Sud",
+      "Snagov Sud",
+      "Colegiul Pedagogic",
+      "Iulius Mall Est",
+      "Campus Universitar Est",
+      "Intre Lacuri",
+      "Complex Dunării Sud",
+      "Turcea",
+      "Dunării Sud",
+      "Harghita",
+      "Jiului Sud",
+      "Aiudului",
+      "Școala Someșeni",
+      "DEPOU Est",
+      "DEPOU Tramvaie Sud"
+    ]
+  },
+  {
+    "number": "57L",
+    "direction": "retur",
+    "stations": [
+      "EMERSON",
+      "DEPOU Vest",
+      "Cămin Someșeni",
+      "Branului",
+      "Jiului Nord",
+      "Dunării Nord",
+      "Streiului",
+      "Complex Dunării Nord",
+      "Campus Universitar Vest",
+      "Iulius Mall Vest",
+      "Valeriu Bologa",
+      "Snagov Nord",
+      "Borsec Nord",
+      "Bistriței",
+      "Septimiu Albini Nord",
+      "Piața Cipariu Sud",
+      "C-tin Brâncoveanu Vest",
+      "Mălinului Vest",
+      "Alverna Vest",
+      "Disp. Alverna"
+    ]
+  },
+  {
+    "number": "57",
+    "direction": "tur",
+    "stations": [
+      "Disp. Alverna",
+      "Alverna Est",
+      "C-tin Brâncoveanu Est",
+      "Piața Cipariu Est",
+      "Septimiu Albini Sud",
+      "Nicolae Titulescu",
+      "Herculane",
+      "Borsec Sud",
+      "Snagov Sud",
+      "Pedagogic",
+      "Mau Est",
+      "Campus Universitar Est",
+      "intre Lacuri",
+      "Complex Dunării Sud",
+      "Harghita",
+      "Jiului Sud",
+      "Disp. IRA"
+    ]
+  },
+  {
+    "number": "57",
+    "direction": "retur",
+    "stations": [
+      "Disp. IRA",
+      "jiuiui",
+      "Dunării Nord",
+      "Streiului",
+      "Complex Dunării Nord",
+      "Iulius Mall Vest",
+      "Campus Universitar Vest",
+      "Valeriu Bologa",
+      "Snagov Nord",
+      "Borsec Nord",
+      "Bistriței",
+      "Septimiu Albini Nord",
+      "C-tin Brâncoveanu Vest",
+      "Piața Cipariu Sud",
+      "Mălinului Vest",
+      "Alverna Vest"
+    ]
+  },
+  {
+    "number": "56",
+    "direction": "tur",
+    "stations": [
+      "Pod Traian",
+      "Cloșca",
+      "Piața Gării Noi",
+      "Giordano Bruno",
+      "Gbrdano Bruno",
+      "Partizanibr Est",
+      "Partizanibr",
+      "Partizanibr Vest",
+      "LombuL1i",
+      "Gheorghe Sion Vest"
+    ]
+  },
+  {
+    "number": "56",
+    "direction": "retur",
+    "stations": [
+      "Gheorghe Sion Vest",
+      "Gheorghe Sion Est",
+      "Jiului Nord",
+      "Spicuiui Sod",
+      "Gbrdano Bruno",
+      "Autogara",
+      "Piața Gării Sud",
+      "Traian",
+      "a.D Pod Trafm"
+    ]
+  },
+  {
+    "number": "53",
+    "direction": "tur",
+    "stations": [
+      "Piata Agroalimentara IRA",
+      "EXPO Transilvania",
+      "Campus UTCN Nord",
+      "Arte Plastice",
+      "București",
+      "Farmec",
+      "Anton Pann",
+      "Piața Mihai Viteazul Vest"
+    ]
+  },
+  {
+    "number": "53",
+    "direction": "retur",
+    "stations": [
+      "Piața Mihai Viteazul Vest",
+      "Piata Abator",
+      "Parcul Farmec",
+      "Fabricii",
+      "Mareșal C-tin Prezan",
+      "Campus UTCN Sud",
+      "EXPO Transilvania",
+      "Piata Agroalimentara IRA"
+    ]
+  },
+  {
+    "number": "52L",
+    "direction": "tur",
+    "stations": [
+      "Ciobanului",
+      "Piața Flora",
+      "Calea Mănăștur",
+      "s Cdea",
+      "Agronomia",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Rasaritului",
+      "Bobdnei Est",
+      "Piața Mărăști",
+      "Campina Sud",
+      "Plevnei Sud",
+      "CET",
+      "Timisului",
+      "Branului",
+      "Dunării Sud",
+      "Piața Mihai Viteazul Sud"
+    ]
+  },
+  {
+    "number": "52L",
+    "direction": "retur",
+    "stations": [
+      "EMERSON",
+      "DEPOU Tramvaie Nord",
+      "l. Ionescu",
+      "Frumoasa",
+      "Morii",
+      "Infratirii Nord t.o",
+      "Rodnei",
+      "Branului",
+      "Broda",
+      "plevnei Nord o",
+      "TERAPIA Nord",
+      "Piața Flora",
+      "Bobalnei Vest",
+      "Campul painii",
+      "Piața 1 Mai",
+      "Barbu Patriciu",
+      "Anton Pann",
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Taberei",
+      "Calea Florești",
+      "Academia de Muzică",
+      "Disp. Bucium"
+    ]
+  },
+  {
+    "number": "52",
+    "direction": "tur",
+    "stations": [
+      "Broda",
+      "Plevnei Nord",
+      "TERAPIA Nord",
+      "Piața Flora",
+      "Piața 1 Mai",
+      "Bobdnei Vest",
+      "Anton Pann",
+      "Barbu Patriciu",
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Taberei",
+      "Grădini Mănăștur",
+      "Academia de Muzică",
+      "Calea Florești"
+    ]
+  },
+  {
+    "number": "52",
+    "direction": "retur",
+    "stations": [
+      "Disp. Bucium",
+      "Bucium",
+      "Ciobanului",
+      "Piața Flora",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Ploiesti",
+      "Paris",
+      "Rasaritului",
+      "Piața Mărăști",
+      "Bobalnei Est",
+      "Teilor c.o",
+      "Campina Sud",
+      "Plevnei Sud",
+      "CET o",
+      "Timisului o"
+    ]
+  },
+  {
+    "number": "50L",
+    "direction": "tur",
+    "stations": [
+      "Spitalul de Recuperare",
+      "Gheorghe Dima",
+      "Observatorului Sud",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "CD P-ta Abator",
+      "Piața Mihai Viteazul Est",
+      "Paris",
+      "Rasarituiui",
+      "Piața Mărăști",
+      "Bobainei Est",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "TERMOROM Sud",
+      "ERS CUG Sud",
+      "UNIMET Sud",
+      "AMBERGER Sud"
+    ]
+  },
+  {
+    "number": "50L",
+    "direction": "retur",
+    "stations": [
+      "EMERSON",
+      "DEPOU Tramvaie Nord",
+      "AMBERGER Nord",
+      "UNIMET Nord",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "TERAPIA Sud",
+      "Bobalnei Vest",
+      "Campul Painii",
+      "Piața 1 Mai",
+      "Barbu Patriciu",
+      "Anton Pann",
+      "I.P. Voitești Nord",
+      "Opera",
+      "Silviu Dragomir",
+      "Observatorului Nord",
+      "Spitalul de Recuperare",
+      "Gheorghe Dima"
+    ]
+  },
+  {
+    "number": "50",
+    "direction": "tur",
+    "stations": [
+      "Disp. IRA",
+      "Zorilor",
+      "Spitalul de Recuperare",
+      "Observatorului Sud",
+      "Gheorghe Dima",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Piața Mihai Viteazul Est",
+      "Piata Abator",
+      "Paris",
+      "Rasaritului",
+      "Piața Mărăști",
+      "Bobalnei E",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "SIETA",
+      "TERMOROM Sud",
+      "ERS CUG Sud"
+    ]
+  },
+  {
+    "number": "50",
+    "direction": "retur",
+    "stations": [
+      "Disp. ERS CUG",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "TERAPIA Sud",
+      "Bobalnei V",
+      "Campul Painii",
+      "Piața 1 Mai",
+      "Barbu Patriciu",
+      "Anton Pann",
+      "I.P. Voitești Nord",
+      "Opera",
+      "Silviu Dragomir",
+      "Observatorului Nord",
+      "Spitalul de Recuperare",
+      "Gheorghe Dima"
+    ]
+  },
+  {
+    "number": "48L",
+    "direction": "tur",
+    "stations": [
+      "Baita",
+      "Herculane",
+      "Borsec Sud",
+      "Snagov Sud",
+      "Colegiul Pedagogic",
+      "Iulius Mall Est",
+      "Campus Universitar Est",
+      "Arte Plastice",
+      "Maresal Al. Averescu",
+      "Bobalnei Est",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "TERMOROM Sud",
+      "ERS CUG Sud",
+      "UNIMET Sud",
+      "AMBERGER Sud",
+      "DEPOU Tramvaie Sud"
+    ]
+  },
+  {
+    "number": "48L",
+    "direction": "retur",
+    "stations": [
+      "EMERSON",
+      "DEPOU Tramvaie Nord",
+      "AMBERGER Nord",
+      "UNIMET Nord",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "TERAPIA Sud",
+      "Bobalnei Vest",
+      "Fabricii",
+      "Mareșal C-tin Prezan",
+      "Dorobanților",
+      "Campus Universitar Vest",
+      "Iulius Mall Vest",
+      "Valeriu Bologa",
+      "Snagov Nord",
+      "Borsec Nord",
+      "Albac",
+      "Baisoara"
+    ]
+  },
+  {
+    "number": "48",
+    "direction": "tur",
+    "stations": [
+      "Baita",
+      "Herculane",
+      "Snagov Sud",
+      "Borsec Sud",
+      "Iulius Mall Est",
+      "Colegiul Pedagogic",
+      "Arte Plastice",
+      "Campus Universitar Est",
+      "o Maresai Al. Averescu",
+      "Bobainei Est",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "S ETA",
+      "TERMOROM Sud"
+    ]
+  },
+  {
+    "number": "48",
+    "direction": "retur",
+    "stations": [
+      "Disp. ERS CUG",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "Terapia Vest co",
+      "Bobalnei Vest",
+      "Fabricii",
+      "Mareșal C-tin Prezan",
+      "Dorobanților",
+      "Campus Universitar Vest",
+      "Iulius Mall Vest",
+      "Valeriu Bologa",
+      "Snagov Nord",
+      "Borsec Nord",
+      "Albac",
+      "Baisoara"
+    ]
+  },
+  {
+    "number": "47",
+    "direction": "tur",
+    "stations": [
+      "Disp. IRA",
+      "Jiului Sud",
+      "Dunării Nord",
+      "Streiului",
+      "Complex Dunării Nord",
+      "Statia Muresului",
+      "Arte Plastice",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Central",
+      "Piața Mihai Viteazul Sud"
+    ]
+  },
+  {
+    "number": "47",
+    "direction": "retur",
+    "stations": [
+      "Piața Mihai Viteazul Sud",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Intre Lacuri",
+      "Complex Dunării Sud",
+      "Turcea",
+      "Dunării Sud",
+      "Harghita",
+      "Jiului Sud",
+      "Disp. IRA"
+    ]
+  },
+  {
+    "number": "46L",
+    "direction": "tur",
+    "stations": [
+      "Vila Tusa",
+      "D.D. Rosca Est",
+      "Dianei Est",
+      "Hotel Stil Est",
+      "E. Ionesco",
+      "N. Steinhardt",
+      "V. Stoica",
+      "Zorilor",
+      "Spitalul de Recuperare",
+      "Observatorului Sud",
+      "Gheorghe Dima",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Opera"
+    ]
+  },
+  {
+    "number": "46L",
+    "direction": "retur",
+    "stations": [
+      "Silviu Dragomir",
+      "Opera",
+      "Observatorului Nord",
+      "Spitalul de Recuperare",
+      "Gheorghe Dima",
+      "Picasso",
+      "L. Matis",
+      "i..D Hotel Stil Vest",
+      "Luminii",
+      "Dianei Vest",
+      "D.D. Rosca Vest",
+      "Vila TusaSos"
+    ]
+  },
+  {
+    "number": "46B",
+    "direction": "tur",
+    "stations": [
+      "Disp. IRA",
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Opera",
+      "Silviu Dragomir",
+      "Observatorului Nord",
+      "Spitalul de Recuperare",
+      "Gheorghe Dima"
+    ]
+  },
+  {
+    "number": "46B",
+    "direction": "retur",
+    "stations": [
+      "Disp. IRA",
+      "Zorilor",
+      "Spitalul de Recuperare",
+      "Observatorului Sud",
+      "Gheorghe Dima",
+      "Piața Cipariu Nord",
+      "Tribunal",
+      "Scoala S. Barnutiu",
+      "Biblioteca Judetea na",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni"
+    ]
+  },
+  {
+    "number": "46",
+    "direction": "tur",
+    "stations": [
+      "Giratie Drum Faget",
+      "Spitalul de Recuperare",
+      "Observatorului Sud",
+      "N. Steinhardt",
+      "E. Ionesco",
+      "Piața Cipariu Nord",
+      "Gheorghe Dima",
+      "Piața Avram Iancu",
+      "V. Stoica",
+      "Zorilor",
+      "Teatru"
+    ]
+  },
+  {
+    "number": "46",
+    "direction": "retur",
+    "stations": [
+      "Spitalul de Recuperare",
+      "Observatorului Nord",
+      "Silviu Dragomir",
+      "Opera",
+      "Ghe. Dima",
+      "Picasso",
+      "L Matis",
+      "Luminii"
+    ]
+  },
+  {
+    "number": "45",
+    "direction": "tur",
+    "stations": [
+      "Meteor",
+      "Spitalul de Recuperare",
+      "Observatorului Sud",
+      "oo Vitacom Sud",
+      "CD Trifoiului Sud",
+      "Constantin Noica",
+      "Compl. Tempus Sud",
+      "Crinului",
+      "Piața Cipariu Nord",
+      "Alverna Est",
+      "Mălinului Est",
+      "s Rubin Patitia",
+      "C-tin Brâncoveanu Est",
+      "z Biblioteca Judeteana",
+      "Tribunal",
+      "Campus Universitar Vest",
+      "Simion Barnutiu",
+      "Iulius Mall Vest"
+    ]
+  },
+  {
+    "number": "45",
+    "direction": "retur",
+    "stations": [
+      "Disp. Unirii",
+      "Colegiul Pedagogic",
+      "Iulius Mall Est",
+      "Slanic",
+      "Bistriței",
+      "Septimiu Albini Nord",
+      "Piața Cipariu Sud",
+      "C-tin Brâncoveanu Vest",
+      "Mălinului Vest",
+      "Alverna Vest",
+      "Artarului",
+      "Fagului",
+      "Jiului Nord",
+      "Vitacom Nord",
+      "Compl. Tempus Nord",
+      "Electrogroup",
+      "W.A. Mozart",
+      "Observatorului Nord",
+      "Spitalul de Recuperare",
+      "Gheorghe Dima",
+      "Disp. Zorilor"
+    ]
+  },
+  {
+    "number": "44",
+    "direction": "tur",
+    "stations": [
+      "Hotel Napoca",
+      "Radio România Cluj",
+      "Petuniei",
+      "Piața Mihai Viteazul Sud",
+      "Iancu de Hunedoara",
+      "Piața 14 Iulie Sud",
+      "g Rubin Patitia",
+      "Parcul Central",
+      "Tribunal",
+      "Valeriu Bologa",
+      "Simion Barnutiu",
+      "Biblioteca Judeteana",
+      "Campus Universitar Est",
+      "Iulius Mall Vest",
+      "Oașului Sud"
+    ]
+  },
+  {
+    "number": "44",
+    "direction": "retur",
+    "stations": [
+      "Soporului",
+      "Oașului Nord",
+      "Colegiul Pedagogic",
+      "Iulius Mall Est",
+      "L.O Slanic",
+      "Bistriței",
+      "Septimiu Albini Nord",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Sora",
+      "Central",
+      "Dragalina Nord",
+      "Octavian Goga",
+      "Piața 14 Iulie Nord",
+      "Alexandru Vlahuță",
+      "Buzau",
+      "Miraslău",
+      "Fântânele",
+      "Disp. Grigorescu"
+    ]
+  },
+  {
+    "number": "43P",
+    "direction": "tur",
+    "stations": [
+      "Observatorului Nord",
+      "Spitalul de Recuperare",
+      "Gheorghe Dima",
+      "Varianta Manastur",
+      "Frunzișului",
+      "Cocosui de Aur",
+      "Peana",
+      "Bucium",
+      "Gârbău",
+      "Nodul Nord",
+      "VIVO! Cluj-Napoca"
+    ]
+  },
+  {
+    "number": "43P",
+    "direction": "retur",
+    "stations": [
+      "VIVO! Cluj-Napoca",
+      "Polus Center",
+      "Academia de Muzică",
+      "Primăverii",
+      "Minerva",
+      "Izlazului",
+      "Frunzișului",
+      "Varianta Zorilor Sud",
+      "Zorilor",
+      "Spitalul de Recuperare",
+      "Observatorului Sud"
+    ]
+  },
+  {
+    "number": "43B",
+    "direction": "tur",
+    "stations": [
+      "Radio România Cluj",
+      "Disp. Grigorescu",
+      "CORA Nord",
+      "Spitalul de Recuperare",
+      "Primăverii",
+      "Frunzișului",
+      "Colina",
+      "Varianta Zorilor",
+      "Minerva",
+      "Observatorului Sud",
+      "Izlazului",
+      "Constantin Noica",
+      "Zorilor",
+      "Dacia Service",
+      "Hexagon",
+      "Meteor",
+      "Drum Faget",
+      "ØØß"
+    ]
+  },
+  {
+    "number": "43B",
+    "direction": "retur",
+    "stations": [
+      "Dacia Service",
+      "Spitalul de Recuperare",
+      "Observatorului Nord",
+      "Electrogroup",
+      "Compexit",
+      "W.A. Mozart",
+      "Ghe. Dima",
+      "Cocosul de Aur",
+      "Frunzișului",
+      "Bdul 1 Decembrie",
+      "Peana",
+      "øøg",
+      "Gârbău",
+      "CORA Sud",
+      "Bucium"
+    ]
+  },
+  {
+    "number": "43",
+    "direction": "tur",
+    "stations": [
+      "Disp. Grigorescu",
+      "Radio România Cluj",
+      "CORA Nord",
+      "Academia de Muzică",
+      "Primăverii",
+      "Minerva",
+      "Izlazului",
+      "CD Varianta Zori}or Sud",
+      "Frunzișului",
+      "Zorilor",
+      "Spitalul de Recuperare",
+      "Observatorului Sud"
+    ]
+  },
+  {
+    "number": "43",
+    "direction": "retur",
+    "stations": [
+      "Observatorului Nord",
+      "Spitalul de Recuperare",
+      "Gheorghe Dima",
+      "Varianta Manastur",
+      "Frunzișului",
+      "Cocosul de Aur co",
+      "Peana",
+      "Gârbău",
+      "Bucium",
+      "CORA sud e",
+      "Bdul 1 Decembrie",
+      "Disp. Grigorescu"
+    ]
+  },
+  {
+    "number": "42",
+    "direction": "tur",
+    "stations": [
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Alverna Vest",
+      "Eugen Lovinescu V",
+      "Grigore Antipa V"
+    ]
+  },
+  {
+    "number": "42",
+    "direction": "retur",
+    "stations": [
+      "Biserica Campului",
+      "Grigore Antipa E",
+      "Eugen Lovinescu E",
+      "Alverna Est",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Central",
+      "Piața Mihai Viteazul Sud",
+      "PMV Flip"
+    ]
+  },
+  {
+    "number": "41",
+    "direction": "tur",
+    "stations": [
+      "Radio România Cluj",
+      "Disp. Grigorescu",
+      "Petuniei",
+      "Giuseppe Garibaldi",
+      "Iancu de Hunedoara",
+      "Cluj Arena",
+      "Parcul Central",
+      "Piața Mihai Viteazul Sud",
+      "P-ta Abator",
+      "Paris"
+    ]
+  },
+  {
+    "number": "41",
+    "direction": "retur",
+    "stations": [
+      "Piața 1 Mai",
+      "Barbu Patriciu",
+      "Anton Pann",
+      "Dacia",
+      "Dragalina Nord",
+      "Octavian Goga",
+      "George Enescu",
+      "Alexandru Vlahuță",
+      "Buzau",
+      "Miraslău",
+      "Fântânele",
+      "Disp. Grigorescu"
+    ]
+  },
+  {
+    "number": "40",
+    "direction": "tur",
+    "stations": [
+      "Silviu Dragomir",
+      "Constantin Noica",
+      "Opera",
+      "Centrul Medical",
+      "Meteor",
+      "Drum Faget",
+      "Hotel Stil Vest",
+      "D.D. Rosca Vest",
+      "Dianei Vest",
+      "Vila Tusa"
+    ]
+  },
+  {
+    "number": "40",
+    "direction": "retur",
+    "stations": [
+      "D.D. Rosca Est",
+      "Vila Tusa",
+      "Hotel stil Est",
+      "Dacia Service",
+      "Dianei Est",
+      "Electrogroup",
+      "Piața Cipariu Nord",
+      "Compexit",
+      "W.A. Mozart",
+      "Gheorghe Dima",
+      "Piața Avram Iancu",
+      "Calea Turzii",
+      "Teatru",
+      "BBB"
+    ]
+  },
+  {
+    "number": "39L",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul Est",
+      "Cloșca",
+      "Piața Gării Noi",
+      "Giordano Bruno",
+      "Senina Sud",
+      "Dragos Voda Sud",
+      "Vrancea",
+      "Catugareni Sud",
+      "IRIS Sud",
+      "Vama Chinteni",
+      "Intermediara Est",
+      "Pometului Est",
+      "Scoala Est",
+      "IAS Est",
+      "DEPOU Est",
+      "Drum Feiurd Est",
+      "CREIC",
+      "Podul Fetei Est",
+      "Bis. Greco Catolica Est",
+      "Terra Est",
+      "Cluj Due Est",
+      "Catun Vest )"
+    ]
+  },
+  {
+    "number": "39L",
+    "direction": "retur",
+    "stations": [
+      "r.' Cluj Due Vest",
+      "Terra Vest",
+      "PodulFetei Vest",
+      "Bis. Greco Catoiica",
+      "Drum Feiurd Vest",
+      "CREC",
+      "Vest",
+      "DEPOU Vest",
+      "IAS Vest",
+      "Scoaia Vest",
+      "Pometuiui Vest",
+      "Inte rmediara Vest",
+      "Oașului Nord",
+      "Caiugareni Nord",
+      "Spataru Miiescu",
+      "Dragos Voda Nord",
+      "Senina Nord",
+      "Autogara",
+      "Piața Gării Vechi"
+    ]
+  },
+  {
+    "number": "39",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul Est",
+      "Cloșca",
+      "Piața Gării Noi",
+      "Giordano Bruno",
+      "Senina Sud",
+      "Dragos Voda Sud",
+      "Vrancea",
+      "Calugareni Sud",
+      "IRIS Sud",
+      "Vama Chinteni",
+      "Intermediara Est",
+      "Pometului Est",
+      "Scoala Est",
+      "\\ POD Est",
+      "IAS Est",
+      "Drum Feiurd Est",
+      "Podul Fetei Est",
+      "Bis. Greco Catolica Est",
+      "Valea Chintaului"
+    ]
+  },
+  {
+    "number": "39",
+    "direction": "retur",
+    "stations": [
+      "Valea Chintaului",
+      "Bis. Greco Catolica Vest",
+      "Podul Fetei Vest",
+      "Drum Feiurd Vest",
+      "DEPOU Vest",
+      "IAS Vest",
+      "Scoala Vest",
+      "Pometului Vest",
+      "Intermediara Vest",
+      "Oașului Nord",
+      "IRIS Nord",
+      "Calugareni Nord",
+      "Spataru Milescu",
+      "Dragos Voda Nord",
+      "Senina Nord",
+      "Autogara",
+      "Piața Gării Vechi",
+      "Scoala Horea",
+      "Piața Mihai Viteazul"
+    ]
+  },
+  {
+    "number": "38",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul Est",
+      "Emil Racovita N",
+      "Trambitasului",
+      "Cantonului"
+    ]
+  },
+  {
+    "number": "38",
+    "direction": "retur",
+    "stations": [
+      "Cantonului",
+      "Gruia",
+      "Baia Mare",
+      "Crisan",
+      "Scoala Horea",
+      "Piața Mihai Viteazul Sud",
+      "Piața Mihai Viteazul Est"
+    ]
+  },
+  {
+    "number": "37",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul Est",
+      "Emil Racovita Nord",
+      "Arena CFR Nord",
+      "Radauti bbrd",
+      "Tiberiu Brediceanu",
+      "TETAROM",
+      "Bariera CFR Nord",
+      "Energobit Nord",
+      "Tetarom Vest"
+    ]
+  },
+  {
+    "number": "37",
+    "direction": "retur",
+    "stations": [
+      "Tetarom",
+      "Energobit Sud",
+      "Bariera CFR Sud",
+      "Vasile Cadova",
+      "Radauti Sid",
+      "Stadionul CFR",
+      "Crisan",
+      "Scoala Horea",
+      "Piața Mihai Viteazul Sud",
+      "P-ta M. Est e"
+    ]
+  },
+  {
+    "number": "36L",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul Vest",
+      "Piata Abator",
+      "Parcul Farmec",
+      "Mrs Alexandru Averescu",
+      "Bobalnei Est",
+      "Campina Sud",
+      "Plevnei Sud",
+      "CET",
+      "Jiului Sud",
+      "Branului",
+      "Infratirii Sud",
+      "Piața Mihai Viteazul Sud",
+      "Barc I",
+      "DEPOU Est",
+      "DEPOU Tramvaie Sud",
+      "EMERSON"
+    ]
+  },
+  {
+    "number": "36L",
+    "direction": "retur",
+    "stations": [
+      "EMERSON",
+      "DEPOU Tramvaie Nord",
+      "DEPOU Vest",
+      "l. Ionescu",
+      "Frumoasa",
+      "Morii",
+      "Infratirii Nord",
+      "Rodnei",
+      "Branului",
+      "Broda",
+      "Plevnei Nord",
+      "TERAPIA Nord",
+      "Bobalnei Vest",
+      "București",
+      "Farmec",
+      "Anton Pann",
+      "Piața Mihai Viteazul Vest"
+    ]
+  },
+  {
+    "number": "36B",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul",
+      "Piata Abator",
+      "Parcul Farmec",
+      "Mrs. Al. Averescu",
+      "Bobalnei E",
+      "Teilor",
+      "Campina S",
+      "Plevnei S",
+      "CET",
+      "Timisului",
+      "Branului",
+      "Infratirii S",
+      "Piața Mihai Viteazul Sud",
+      "Barc I",
+      "I. Ionescu"
+    ]
+  },
+  {
+    "number": "36B",
+    "direction": "retur",
+    "stations": [
+      "l. Ionescu",
+      "Frumoasa",
+      "Morii",
+      "Infratirii N",
+      "Rodnei",
+      "Branului",
+      "Broda",
+      "Plevnei N",
+      "Campina N",
+      "Piața Flora",
+      "Bobalnei V",
+      "București",
+      "Farmec",
+      "Anton Pann",
+      "Piața Mihai Viteazul"
+    ]
+  },
+  {
+    "number": "35",
+    "direction": "tur",
+    "stations": [
+      "Disp. IRA",
+      "Zorilor",
+      "Spitalul de Recuperare",
+      "Observatorului Sud",
+      "Gheorghe Dima",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Sora",
+      "Central",
+      "Cloșca",
+      "Piața Gării Sud"
+    ]
+  },
+  {
+    "number": "35",
+    "direction": "retur",
+    "stations": [
+      "Piața Gării Sud",
+      "Traian",
+      "I.P. Voitești",
+      "Opera",
+      "Silviu Dragomir",
+      "Observatorului Nord",
+      "Spitalul de Recuperare",
+      "Gheorghe Dima"
+    ]
+  },
+  {
+    "number": "34",
+    "direction": "tur",
+    "stations": [
+      "Piața Gării Sud",
+      "Blanariior",
+      "Rasarituiui",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Fabricii",
+      "Dorobanților",
+      "Campus Universitar Vest",
+      "Iulius Mall Vest",
+      "Valeriu Bologa",
+      "Snagov Nord",
+      "Albac",
+      "Borsec Nord",
+      "Baisoara"
+    ]
+  },
+  {
+    "number": "34",
+    "direction": "retur",
+    "stations": [
+      "Baisoara",
+      "Baita",
+      "Herculane",
+      "Borsec Sud",
+      "Snagov Sud",
+      "Colegiul Pedagogic",
+      "Iulius Mall Est",
+      "Campus Universitar Est",
+      "Arte Plastice",
+      "Maresal Al. Averescu",
+      "Campul Painii",
+      "Piața 1 Mai",
+      "Parcul Feroviarilor",
+      "Piața Gării Nord"
+    ]
+  },
+  {
+    "number": "33",
+    "direction": "tur",
+    "stations": [
+      "Septimiu Albini Nord",
+      "Baisoara",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Baita",
+      "Bistriței",
+      "PMV 2"
+    ]
+  },
+  {
+    "number": "33",
+    "direction": "retur",
+    "stations": [
+      "Piața Mihai Viteazul Vest",
+      "Septimiu Albini Sud",
+      "Piața Cipariu Est",
+      "Teatru",
+      "Nicolae Titulescu",
+      "Baisoara",
+      "Albac",
+      "BBB"
+    ]
+  },
+  {
+    "number": "32B",
+    "direction": "tur",
+    "stations": [
+      "Disp. Alverna",
+      "Alverna Est",
+      "Mălinului Est",
+      "C-tin Brâncoveanu Est",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Sora",
+      "Central",
+      "Cloșca",
+      "Piața Gării"
+    ]
+  },
+  {
+    "number": "32B",
+    "direction": "retur",
+    "stations": [
+      "Piața Gării Sud",
+      "Traian",
+      "Piața Mihai Viteazul",
+      "Teatru",
+      "Piața Cipariu Sud",
+      "C-tin Brâncoveanu Vest",
+      "Mălinului Vest",
+      "Alverna Vest"
+    ]
+  },
+  {
+    "number": "32",
+    "direction": "tur",
+    "stations": [
+      "C-tin Brâncoveanu Est",
+      "Disp. Alverna",
+      "Alverna Est",
+      "Piața Cipariu Nord",
+      "Mălinului Est",
+      "Piața Avram Iancu",
+      "PMV 2"
+    ]
+  },
+  {
+    "number": "32",
+    "direction": "retur",
+    "stations": [
+      "Piața Mihai Viteazul Vest",
+      "C-tin Brâncoveanu Vest",
+      "Piața Cipariu Sud",
+      "Mălinului Vest",
+      "Teatru",
+      "Alverna Vest"
+    ]
+  },
+  {
+    "number": "31",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul Est",
+      "Piața Gării Nord",
+      "Giordano Bruno",
+      "T.Vladimirescu Nord",
+      "Cloșca",
+      "Fabrica de Paine Nord",
+      "Fagaras",
+      "Livezeni",
+      "Valea Seaca",
+      "Cartier Baciu",
+      "Napolact"
+    ]
+  },
+  {
+    "number": "31",
+    "direction": "retur",
+    "stations": [
+      "Fabrica de Paine Sud",
+      "T.Vladimirescu Sud",
+      "Calea Baciului",
+      "Napolact",
+      "Trandafirilor",
+      "Soarelui",
+      "Piața Gării Vechi",
+      "Autogara",
+      "Scoala Horea",
+      "PMV I"
+    ]
+  },
+  {
+    "number": "30",
+    "direction": "tur",
+    "stations": [
+      "Disp. Grigorescu",
+      "Radio România Cluj",
+      "Petuniei",
+      "Iancu de Hunedoara",
+      "Giuseppe Garibaldi",
+      "Cluj Arena",
+      "Hotel Radisson Blu",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni",
+      "Disp. IRA"
+    ]
+  },
+  {
+    "number": "30",
+    "direction": "retur",
+    "stations": [
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Crinului",
+      "Constanța",
+      "Someș",
+      "Sora",
+      "Memorandumului Nord",
+      "Splaiul Independenței",
+      "George Enescu",
+      "Alexandru Vlahuță",
+      "Spitalul de Copii",
+      "Buzau",
+      "Miraslău",
+      "Fântânele"
+    ]
+  },
+  {
+    "number": "29S",
+    "direction": "tur",
+    "stations": [
+      "Budum",
+      "Roata Făget",
+      "Ciobanului",
+      "Piața Flora",
+      "Calea Mănăștur",
+      "Cdea",
+      "Agronomia",
+      "Memorandumului Sud",
+      "Central",
+      "Piața Mihai Viteazul Sud"
+    ]
+  },
+  {
+    "number": "29S",
+    "direction": "retur",
+    "stations": [
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Taberei",
+      "Calea Florești",
+      "Academia de Muzică",
+      "Roata Făget"
+    ]
+  },
+  {
+    "number": "29",
+    "direction": "tur",
+    "stations": [
+      "Budum",
+      "Roata Făget",
+      "Ciobanului",
+      "Piața Flora",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Cdea",
+      "D Centrd",
+      "Memorandumului Sud",
+      "Piața Mihai Viteazul Sud",
+      "P-ta Abator",
+      "Henri Barbusse"
+    ]
+  },
+  {
+    "number": "29",
+    "direction": "retur",
+    "stations": [
+      "Henri Barbusse",
+      "București",
+      "Farmec",
+      "Anton Pann",
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Taberei",
+      "Calea Florești",
+      "Academia de Muzică",
+      "Roata Făget"
+    ]
+  },
+  {
+    "number": "28B",
+    "direction": "tur",
+    "stations": [
+      "Polus Center",
+      "VIVO! Cluj-Napoca",
+      "CORA sud",
+      "B-dul 1 Decem brie",
+      "Petuniei",
+      "Iancu de Hunedoara",
+      "Piața 14 Iulie Sud",
+      "Parcul Central",
+      "Hotel Napoca",
+      "Piața Mihai Viteazul Sud"
+    ]
+  },
+  {
+    "number": "28B",
+    "direction": "retur",
+    "stations": [
+      "Piața Mihai Viteazul Sud",
+      "Dacia",
+      "Dragalina Nord",
+      "Octavian Goga",
+      "Piața 14 Iulie Nord",
+      "Alexandru Vlahuță",
+      "Buzau",
+      "Miraslău",
+      "CORA Nord",
+      "Nodul Nord",
+      "VIVO! Cluj-Napoca"
+    ]
+  },
+  {
+    "number": "28",
+    "direction": "tur",
+    "stations": [
+      "Radio România Cluj",
+      "Disp. Grigorescu",
+      "Petuniei",
+      "Iancu de Hunedoara",
+      "Piața 14 Iulie Sud",
+      "Hotel Napoca",
+      "Parcul Central",
+      "Piața Mihai Viteazul Sud"
+    ]
+  },
+  {
+    "number": "28",
+    "direction": "retur",
+    "stations": [
+      "Piața Mihai Viteazul Sud",
+      "Dacia",
+      "Dragalina Nord",
+      "Octavian Goga",
+      "Piața 14 Iulie Nord",
+      "Alexandru Vlahuță",
+      "Buzau",
+      "Miraslău",
+      "Fântânele",
+      "Disp. Grigorescu"
+    ]
+  },
+  {
+    "number": "27",
+    "direction": "tur",
+    "stations": [
+      "Radio România Cluj",
+      "Disp. Grigorescu",
+      "Petuniei",
+      "Giuseppe Garibaldi",
+      "Iancu de Hunedoara",
+      "Dragalina Sud",
+      "Cluj Arena",
+      "Piața Gării Sud",
+      "Cloșca"
+    ]
+  },
+  {
+    "number": "27",
+    "direction": "retur",
+    "stations": [
+      "Piața Gării Sud",
+      "Traian",
+      "Dacia",
+      "Dragalina Nord",
+      "Octavian Goga",
+      "Piața 14 Iulie Nord",
+      "Alexandru Vlahuță",
+      "Buzau",
+      "Miraslău",
+      "Fântânele",
+      "Disp. Grigorescu"
+    ]
+  },
+  {
+    "number": "26L",
+    "direction": "tur",
+    "stations": [
+      "Petuniei",
+      "Iancu de Hunedoara",
+      "Giuseppe Garibaldi",
+      "Cluj Arena",
+      "Parcul Central",
+      "Piața Mihai Viteazul Sud",
+      "GrupuiScoiarCFR Est",
+      "Libertatea Est",
+      "IRIS Sud",
+      "Est",
+      "Gh. Asachi",
+      "Oașului Sud",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "TERMOROM Sud",
+      "SETA",
+      "ERS CUG Sud",
+      "UNIMET Sud",
+      "AMBERGER Sud"
+    ]
+  },
+  {
+    "number": "26L",
+    "direction": "retur",
+    "stations": [
+      "DEPOU Tramvaie Nord",
+      "AMBERGER Nord",
+      "UNIMET Nord",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "Oașului Nord",
+      "TERAPIA Nord",
+      "IRIS Nord",
+      "puietilor",
+      "Libertatea Vest",
+      "Traian",
+      "Dacia",
+      "Dragalina Nord",
+      "Octavian Goga",
+      "Piața 14 Iulie Nord",
+      "Alexandru Vlahuță",
+      "Miraslău"
+    ]
+  },
+  {
+    "number": "26",
+    "direction": "tur",
+    "stations": [
+      "Radio România Cluj",
+      "Petuniei",
+      "Iancu de Hunedoara",
+      "Giuseppe Garibaldi",
+      "Parcul Central",
+      "Cluj Arena",
+      "Piața Mihai Viteazul Sud",
+      "Politia Est",
+      "GrupuiScoiarCFR Est",
+      "Libertatea Est",
+      "IRIS Sud",
+      "Gh. Asachi",
+      "Oașului Sud",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "SETA"
+    ]
+  },
+  {
+    "number": "26",
+    "direction": "retur",
+    "stations": [
+      "Disp. ERS CUG",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "Oașului Nord",
+      "IRIS Nord",
+      "Puietilor",
+      "Libertatea Vest",
+      "Traian",
+      "Dacia",
+      "Dragalina Nord",
+      "Octavian Goga",
+      "George Enescu",
+      "Alexandru Vlahuță",
+      "Buzau",
+      "Miraslău",
+      "Fântânele",
+      "Disp. Grigorescu"
+    ]
+  },
+  {
+    "number": "25",
+    "direction": "tur",
+    "stations": [
+      "Disp. Clăbucet",
+      "Primăverii",
+      "Minerva",
+      "Izlazului",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Dorobanților",
+      "Campus Universitar",
+      "Iulius Mall",
+      "Valeriu Bologa"
+    ]
+  },
+  {
+    "number": "25",
+    "direction": "retur",
+    "stations": [
+      "Snagov Nord",
+      "Borsec Nord",
+      "Bistriței",
+      "Septimiu Albini Nord",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Sora",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Ion Meșter",
+      "Peana",
+      "Gârbău"
+    ]
+  },
+  {
+    "number": "24B",
+    "direction": "tur",
+    "stations": [
+      "Disp. Unirii",
+      "Colegiul Pedagogic",
+      "Iulius Mall Est",
+      "Campus Universitar Est",
+      "Arte Plastice",
+      "Someș",
+      "Crinului",
+      "D Sora",
+      "Constanța",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Taberei",
+      "Calea Florești",
+      "Nodul Nord"
+    ]
+  },
+  {
+    "number": "24B",
+    "direction": "retur",
+    "stations": [
+      "VIVO! Cluj-Napoca",
+      "Polus Center",
+      "Ciobanului",
+      "Piața Flora",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Dorobanților",
+      "Campus Universitar Vest",
+      "Iulius Mall Vest",
+      "Valeriu Bologa",
+      "Disp. Unirii"
+    ]
+  },
+  {
+    "number": "24",
+    "direction": "tur",
+    "stations": [
+      "Colegiul Pedagogic",
+      "Iulius Mall Est",
+      "Campus Universitar Est",
+      "Arte Plastice",
+      "Someș",
+      "Crinului",
+      "cD Sora",
+      "Constanța",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Taberei",
+      "Calea Florești"
+    ]
+  },
+  {
+    "number": "24",
+    "direction": "retur",
+    "stations": [
+      "Disp. Bucium",
+      "Bucium",
+      "Ciobanului",
+      "Piața Flora",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Dorobanților",
+      "Campus Universitar Vest",
+      "Iulius Mall Vest",
+      "Valeriu Bologa",
+      "Disp. Unirii"
+    ]
+  },
+  {
+    "number": "23",
+    "direction": "tur",
+    "stations": [
+      "I.P. Voitești Nord",
+      "Regionala CFR",
+      "Ploiesti",
+      "Paris",
+      "Rasa ritului",
+      "Piața Mărăști",
+      "Bobalnei E",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "SIETA",
+      "TERMOROM Sud",
+      "ERS CUG Sud"
+    ]
+  },
+  {
+    "number": "23",
+    "direction": "retur",
+    "stations": [
+      "Disp. ERS CUG",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "TERAPIA Sud",
+      "Bobalnei V",
+      "Campul Painii",
+      "Piața 1 Mai",
+      "Barbu Patriciu",
+      "Anton Pann",
+      "I.P. Voitești Nord"
+    ]
+  },
+  {
+    "number": "22",
+    "direction": "tur",
+    "stations": [
+      "Piața Gării",
+      "Traian",
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Ion Creanga",
+      "Hasdeu",
+      "C. Porumbescu",
+      "Boli Infectioase"
+    ]
+  },
+  {
+    "number": "22",
+    "direction": "retur",
+    "stations": [
+      "Sp. Boli Infectioase",
+      "V. Babes",
+      "Memorandumului Sud",
+      "Central",
+      "Cloșca",
+      "Piața Gării"
+    ]
+  },
+  {
+    "number": "21",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul Vest",
+      "Opera",
+      "Piața Cipariu Sud",
+      "Piata l. Agarbiceanu V",
+      "Drapelului V",
+      "Becas V",
+      "Fagului",
+      "TrifoiuluiN",
+      "Vitacom N",
+      "Compl. Tempus N",
+      "Hexagon",
+      "Drum Faget",
+      "Dacia Service"
+    ]
+  },
+  {
+    "number": "21",
+    "direction": "retur",
+    "stations": [
+      "Dacia Service",
+      "Compexit",
+      "Compl. Tempus Sud",
+      "Vitacom Sud",
+      "Jiului Sud",
+      "Becas Est",
+      "Drapelului Est",
+      "Piata l. Agarbiceanu Est",
+      "Andrei Muresanu Est",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Piața Mihai Viteazul Vest"
+    ]
+  },
+  {
+    "number": "20",
+    "direction": "tur",
+    "stations": [
+      "Bise rica Borhanci Est",
+      "Voievodul Menumorut Est",
+      "Voievodul Glad Est",
+      "Theodor Pa llady",
+      "Branului",
+      "Sere USAMV Nord",
+      "Alverna Est",
+      "Mălinului Est",
+      "C-tin Brâncoveanu Est",
+      "Posada"
+    ]
+  },
+  {
+    "number": "20",
+    "direction": "retur",
+    "stations": [
+      "Posada",
+      "Piața Cipariu Sud",
+      "C-tin Brâncoveanu Vest",
+      "Mălinului Vest",
+      "Alverna Vest",
+      "Sere USAMVSud",
+      "Antim lvireanul",
+      "Viol etelor",
+      "Voievodul Glad Vest",
+      "Voievodul Menumorut Vest",
+      "Biserica Borhanci Vest"
+    ]
+  },
+  {
+    "number": "19",
+    "direction": "tur",
+    "stations": [
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Alverna Vest",
+      "Dimitrie Gusti",
+      "E.Quinet Vest",
+      "E. Quinet Sud"
+    ]
+  },
+  {
+    "number": "19",
+    "direction": "retur",
+    "stations": [
+      "E. Quinet Sud",
+      "E. Quinet Nord",
+      "Scoala Edmund Nicolau",
+      "A.N.L",
+      "Gradinita Mehedinti",
+      "Izlazului",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Central",
+      "Piața Mihai Viteazul Sud",
+      "Pod Traian"
+    ]
+  },
+  {
+    "number": "18",
+    "direction": "tur",
+    "stations": [
+      "Posada",
+      "Piața Cipariu Sud",
+      "C-tin Brâncoveanu Vest",
+      "Mălinului Vest",
+      "Alverna Vest",
+      "Antonio Gaudi Nord",
+      "Statia Nordului Vest",
+      "Uranus Vest",
+      "Romul Ladea",
+      "Dimitrie Onciul",
+      "Veseliei"
+    ]
+  },
+  {
+    "number": "18",
+    "direction": "retur",
+    "stations": [
+      "Veseliei",
+      "Dimitrie Onciul",
+      "Romul Ladea",
+      "Uranus Est",
+      "Statia Nordului Est",
+      "Antonio Gaudi Sud",
+      "Alverna Est",
+      "Mălinului Est",
+      "C-tin Brâncoveanu Est",
+      "Posada"
+    ]
+  },
+  {
+    "number": "12",
+    "direction": "tur",
+    "stations": [
+      "EXPO Transilvania",
+      "Disp. IRA",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Maresai Ai. Averescu",
+      "Bobainei Est",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "SETA",
+      "TERMOROM Sud"
+    ]
+  },
+  {
+    "number": "12",
+    "direction": "retur",
+    "stations": [
+      "ERS CUG Sud",
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "Terapia Vest co",
+      "Bobalnei Vest",
+      "Fabricii",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni",
+      "Disp. IRA"
+    ]
+  },
+  {
+    "number": "14",
+    "direction": "tur",
+    "stations": [
+      "ERS CUG Nord",
+      "TERMOROM Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "Terapia Vest zo",
+      "Bobalnei Vest",
+      "Fabricii",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Ion Meșter",
+      "Peana",
+      "Gârbău",
+      "Disp. Clăbucet"
+    ]
+  },
+  {
+    "number": "14",
+    "direction": "retur",
+    "stations": [
+      "Primăverii",
+      "Minerva",
+      "Izlazului",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Maresal Al. Averescu",
+      "Bobalnei Est",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "TERAPIA Sud",
+      "TERMOROM Sud",
+      "SIE TA"
+    ]
+  },
+  {
+    "number": "10",
+    "direction": "tur",
+    "stations": [
+      "ERS CUG Sud",
+      "ERS CUG Nord",
+      "SINTEROM Nord",
+      "TERAPIA Nord",
+      "TERAPIA Sud",
+      "Bobalnei Vest co",
+      "Fabricii",
+      "Mareșal C-tin Prezan",
+      "Dorobanților",
+      "Campus Universitar Vest",
+      "Iulius Mall Vest",
+      "Valeriu Bologa",
+      "Snagov Nord"
+    ]
+  },
+  {
+    "number": "10",
+    "direction": "retur",
+    "stations": [
+      "Borsec Nord",
+      "Bistriței",
+      "Septimiu Albini Nord",
+      "Piața Cipariu Nord",
+      "Ploiesti",
+      "Piața Avram Iancu",
+      "CD Rasarituiui",
+      "Paris",
+      "Piața Mărăști",
+      "Bobainei Est",
+      "TERAPIA Sud",
+      "SINTEROM Sud",
+      "SIE TA",
+      "TERMOROM Sud"
+    ]
+  },
+  {
+    "number": "9",
+    "direction": "tur",
+    "stations": [
+      "Budum",
+      "Disp. Bucium",
+      "Ciobanului",
+      "Piața Flora",
+      "Calea Mănăștur",
+      "s Cdea Modlor",
+      "Agronomia",
+      "D Centrd",
+      "Memorandumului Sud",
+      "Cloșca",
+      "Piața Gării Sud"
+    ]
+  },
+  {
+    "number": "9",
+    "direction": "retur",
+    "stations": [
+      "Piața Gării Sud",
+      "Traian",
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Taberei",
+      "Calea Florești",
+      "Academia de Muzică",
+      "Disp. Bucium"
+    ]
+  },
+  {
+    "number": "8L",
+    "direction": "tur",
+    "stations": [
+      "Mareșal C-tin Prezan",
+      "Pod Someșeni",
+      "U.M. Someseni",
+      "Dealul Borzas",
+      "Siretului",
+      "Piața Gării",
+      "Henri Coanda",
+      "Selgros",
+      "Halta Dezmir",
+      "Platanilor"
+    ]
+  },
+  {
+    "number": "8L",
+    "direction": "retur",
+    "stations": [
+      "EXPO Transilvania",
+      "Halta AGRO",
+      "Posta Romana",
+      "Școala Someșeni",
+      "R. A.D.P",
+      "EXPO Transilvania",
+      "Mentenantei",
+      "Cămin Someșeni",
+      "Arte Plastice",
+      "Aurel Vlaicu",
+      "Crinului"
+    ]
+  },
+  {
+    "number": "8",
+    "direction": "tur",
+    "stations": [
+      "Piața Mihai Viteazul Sud",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni",
+      "Aiudului",
+      "Școala Someșeni",
+      "Orastie",
+      "Ambient",
+      "Mos Ion Roata",
+      "Traian Vuia S",
+      "Aeroport Sud",
+      "Cantonului",
+      "Electromontaj Sud"
+    ]
+  },
+  {
+    "number": "8",
+    "direction": "retur",
+    "stations": [
+      "Electromontaj Nord",
+      "Aviația Utilitară",
+      "Aeroport",
+      "Traian Vuia N",
+      "Planoarelor",
+      "Vlad Tepes",
+      "Cămin Someșeni",
+      "Branului",
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Central",
+      "Piața Mihai Viteazul Sud"
+    ]
+  },
+  {
+    "number": "7",
+    "direction": "tur",
+    "stations": [
+      "Disp. IRA",
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Ion Meșter",
+      "Izlazului"
+    ]
+  },
+  {
+    "number": "7",
+    "direction": "retur",
+    "stations": [
+      "Izlazului",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni"
+    ]
+  },
+  {
+    "number": "6",
+    "direction": "tur",
+    "stations": [
+      "Disp. Clăbucet",
+      "Primăverii",
+      "Minerva",
+      "Izlazului",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni"
+    ]
+  },
+  {
+    "number": "6",
+    "direction": "retur",
+    "stations": [
+      "Disp. IRA",
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Ion Meșter",
+      "Peana",
+      "Gârbău"
+    ]
+  },
+  {
+    "number": "5",
+    "direction": "tur",
+    "stations": [
+      "Traian",
+      "I.P. Voitești Sud",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Mareșal C-tin Prezan",
+      "Piața Mărăști",
+      "Pod Someșeni",
+      "Siretului",
+      "Aiudului",
+      "Școala Someșeni",
+      "Ambient",
+      "Traian Vuia Sud",
+      "Mos Ion Roata",
+      "Cantonului",
+      "Aeroport Sud"
+    ]
+  },
+  {
+    "number": "5",
+    "direction": "retur",
+    "stations": [
+      "Lukoil Traian Vuia",
+      "Electromontaj Nord",
+      "Aviația Utilitară",
+      "Aeroport Nord",
+      "Traian Vuia Nord",
+      "Planoarelor",
+      "Vlad Tepes",
+      "Cămin Someșeni",
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Central",
+      "Cloșca",
+      "Piața Gării Sud"
+    ]
+  },
+  {
+    "number": "4",
+    "direction": "tur",
+    "stations": [
+      "Disp. IRA",
+      "EXPO Transilvania",
+      "Aurel Vlaicu",
+      "Arte Plastice",
+      "Crinului",
+      "Someș",
+      "Constanța",
+      "Sora",
+      "Central",
+      "Cloșca",
+      "Piața Gării"
+    ]
+  },
+  {
+    "number": "4",
+    "direction": "retur",
+    "stations": [
+      "Piața Gării Sud",
+      "Traian",
+      "I.P. Voitești",
+      "Regionala CFR",
+      "Biserica Sf. Petru",
+      "Piața Mărăști",
+      "Mareșal C-tin Prezan",
+      "Siretului",
+      "Pod Someșeni"
+    ]
+  },
+  {
+    "number": "3",
+    "direction": "tur",
+    "stations": [
+      "Snagov Nord",
+      "Borsec Nord",
+      "Bistriței",
+      "Septimiu Albini Nord",
+      "Piața Cipariu Nord",
+      "Piața Avram Iancu",
+      "Sora",
+      "Central",
+      "Cloșca",
+      "Piața Gării"
+    ]
+  },
+  {
+    "number": "3",
+    "direction": "retur",
+    "stations": [
+      "Piața Gării Sud",
+      "Traian",
+      "I.P. Voitești Sud",
+      "Teatru",
+      "Piața Cipariu Est",
+      "Septimiu Albini Sud",
+      "Nicolae Titulescu",
+      "Herculane",
+      "Borsec Sud",
+      "Snagov Sud"
+    ]
+  },
+  {
+    "number": "2",
+    "direction": "tur",
+    "stations": [
+      "Izlazului",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Central",
+      "Cloșca",
+      "Piața Gării"
+    ]
+  },
+  {
+    "number": "2",
+    "direction": "retur",
+    "stations": [
+      "Piața Gării",
+      "Traian",
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Ion Meșter"
+    ]
+  },
+  {
+    "number": "1",
+    "direction": "tur",
+    "stations": [
+      "Disp. Bucium",
+      "Primăverii",
+      "Minerva",
+      "Izlazului",
+      "Calea Mănăștur",
+      "Agronomia",
+      "Calea Moților",
+      "Memorandumului Sud",
+      "Victoria",
+      "Regionala CFR",
+      "Ploiesti",
+      "Paris",
+      "Piața 1 Mai"
+    ]
+  },
+  {
+    "number": "1",
+    "direction": "retur",
+    "stations": [
+      "Piața 1 Mai",
+      "Barbu Patriciu",
+      "Anton Pann",
+      "Pod Traian",
+      "Memorandumului Nord",
+      "Spitalul de Copii",
+      "Fabrica de Bere",
+      "Grădini Mănăștur",
+      "Ion Meșter",
+      "Peana",
+      "Gârbău"
+    ]
+  }
+]
