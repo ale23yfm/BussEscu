@@ -82,6 +82,46 @@
           <!-- <span class="loader loader--center"></span> -->
         </div>
       </div>
+
+      <div class="lines">
+        <div class="dropdown-wrapper">
+          <div class="dropdown-wrapper__input">
+            <input
+              type="text"
+              name="lines-input"
+              id="lines-input"
+              class="search-input"
+              placeholder="Alege linia..."
+              autocomplete="off"
+            />
+            <span class="roadmap-icon">
+              <i class="ri-route-line"></i>
+            </span>
+          </div>
+
+          <ul
+            id="line-suggestions-list"
+            class="dropdown-wrapper__list hidden"
+          ></ul>
+        </div>
+
+        <div class="lines-wrapper hidden">
+          <div class="lines-wrapper__body">
+            <div class="retur-wrapper"></div>
+            <div class="separator">
+              <div class="circuit-terminal circuit-terminal--top">
+                <span>Tur</span>
+                <i class="ri-arrow-right-s-fill circuit-terminal__icon"></i>
+              </div>
+              <div class="circuit-terminal circuit-terminal--bottom">
+                <span>Retur</span>
+                <i class="ri-arrow-left-s-fill circuit-terminal__icon"></i>
+              </div>
+            </div>
+            <div class="tur-wrapper"></div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script src="environment/config.js"></script>
