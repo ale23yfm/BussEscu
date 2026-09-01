@@ -417,6 +417,7 @@ const stationNames = [
       "ers cug nord",
       "termorom nord",
       "sinterom nord",
+      "sigismund toduta",
       "terapia nord",
       "oasului nord",
       "iris nord",
@@ -430,6 +431,8 @@ const stationNames = [
       "plopilor nord",
       "grigore alexandrescu",
       "ravasului",
+
+      "campina nord",
       "clabucet",
       "aeroport terminal",
       "expo transilvania",
@@ -461,6 +464,24 @@ const stationNames = [
       "oasului nord tram",
       "iris nord tram",
       "libertatea vest tram",
+      "jiului nord",
+      "jiului sud",
+      "depou tramv sud",
+      "giordano bruno est",
+      "partizanilor est",
+      "partizanilor vest",
+      "partizanilor",
+      "gheorghe sion vest",
+      "gheorghe sion est",
+      "lombului",
+      "spicului nord",
+      "spicului sud",
+      "piata agroalimentara ira",
+      "expo transilvania nord",
+      "expo transilvania sud",
+      "campus utcn nord",
+      "campus utcn sud",
+      "campia nord"
 ];
 
 db.createCollection("stations");
