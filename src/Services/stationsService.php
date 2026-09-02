@@ -4,7 +4,7 @@ namespace Ale\Bussescu\Services;
 
 use Ale\Bussescu\Repositories\stationsRepository;
 
-class StationsService
+class stationsService
 {
     private stationsRepository $repository;
 
