@@ -267,13 +267,45 @@
         color: var(--circuit-terminal-text);
         font-size: 1.15rem;
         font-weight: 600;
-        z-index: 3;
+        z-index: 2;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
         &__icon {
           font-size: 1.8rem;
           color: var(--circuit-terminal-icon);
           line-height: 1;
+        }
+      }
+
+      .circuit-tracker-dot {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        background-color: var(--circuit-line-color);
+        box-shadow: none;
+        pointer-events: none;
+        z-index: 4;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+
+        .tracker-arrow {
+          font-size: 1.3rem;
+          color: var(--circuit-terminal-bg);
+          line-height: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &--active {
+          opacity: 1;
         }
       }
     }

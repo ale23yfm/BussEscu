@@ -74,6 +74,8 @@
   --circuit-node-bg: #{$purple-50};
   --circuit-node-border: #{$purple-500};
   --circuit-node-icon: #{$purple-500};
+  --circuit-dot-bg: #{$yellow-300};
+  --circuit-dot-glow: #{$yellow-300}aa;
 }
 
 /* Light Theme */
@@ -150,4 +152,6 @@
   --circuit-node-bg: #{$yellow-50};
   --circuit-node-border: #{$yellow-500};
   --circuit-node-icon: #{$yellow-500};
+  --circuit-dot-bg: #{$yellow-500};
+  --circuit-dot-glow: #{$yellow-500}88;
 }
