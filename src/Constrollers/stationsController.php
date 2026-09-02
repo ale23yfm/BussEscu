@@ -13,7 +13,7 @@ class stationsController
         $this->service = $service;
     }
 
-    public function index(): void
+    public function index() : void
     {
         header('Content-Type: application/json');
         $stations = $this->service->getAll();

@@ -14,6 +14,7 @@ class linesRepository
         $this->collection = $db->selectCollection('lines');
     }
 
+
     public function getAll() : array
     {
         $lines = [];
