@@ -9,9 +9,9 @@ use Ale\Bussescu\Services\stationsService;
 
 $db = getDatabase();
 
-$repository = new StationsRepository($db);
-$service = new StationsService($repository);
-$controller = new StationsController($service);
+$repository = new stationsRepository($db);
+$service = new stationsService($repository);
+$controller = new stationsController($service);
 
 $controller->index();
 ?>

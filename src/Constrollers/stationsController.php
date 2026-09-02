@@ -4,7 +4,7 @@ namespace Ale\Bussescu\Constrollers;
 
 use Ale\Bussescu\Services\stationsService;
 
-class StationsController
+class stationsController
 {
     private stationsService $service;
 
