@@ -13,7 +13,7 @@ class linesController
         $this->service = $service;
     }
 
-    public function index(): void
+    public function index() : void
     {
         header('Content-Type: application/json');
         $lines = $this->service->getAll();

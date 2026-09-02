@@ -1,5 +1,9 @@
 use("bus_tracker");
+const line6 = db.lines.findOne({ number: "6", direction: "tur" });
+console.log("First station id stored in line 6:", line6.stations[0]);
 
+const match = db.stations.findOne({ _id: line6.stations[0] });
+console.log("Does that id exist in stations right now?", match);
 // Delete what was created previously to avoid duplicates
 db.stations.drop();
 db.lines.drop();
