@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Preload lines data from lines.json
+  // Preload lines data from api
   loadLinesData();
 
   // Close dropdown on outside click
@@ -455,11 +455,20 @@ async function loadLinesData() {
   if (linesDataCache.length > 0) return linesDataCache;
 
   try {
-    const response = await fetch("./assets/data/lines.json");
+    const response = await fetch(`${endpoint}/v1/lines/`);
     if (!response.ok) {
       throw new Error(`HTTP Error: ${response.status}`);
     }
     linesDataCache = await response.json();
+
+    const lines = linesDataCache.lines.map((item) =>
+      String(item.number).trim().toUpperCase(),
+    );
+
+    linesDataCache = lines.sort((a, b) =>
+      a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }),
+    );
+
     return linesDataCache;
   } catch (error) {
     console.error("Eroare la încărcarea lines.json:", error);
@@ -479,19 +488,9 @@ function setupLinesAutocomplete(wrapperElement) {
 
   if (!linesInput || !suggestionsList) return;
 
-  async function getAvailableLines() {
-    const data = await loadLinesData();
-    const unique = Array.from(
-      new Set(data.map((item) => String(item.number).trim())),
-    );
-
-    return unique.sort((a, b) =>
-      a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }),
-    );
-  }
-
   async function filterAndRenderLines(query = "") {
-    const allLines = await getAvailableLines();
+    const allLines = await loadLinesData();
+
     const cleanQuery = query
       .replace(/^linia\s*/i, "")
       .trim()
@@ -505,7 +504,11 @@ function setupLinesAutocomplete(wrapperElement) {
   }
 
   linesInput.addEventListener("focus", () => {
-    filterAndRenderLines(linesInput.value.trim());
+    filterAndRenderLines("");
+  });
+
+  linesInput.addEventListener("click", () => {
+    filterAndRenderLines("");
   });
 
   linesInput.addEventListener("input", (e) => {
@@ -548,7 +551,7 @@ function renderLineSuggestions(lines, listElement, inputElement) {
  * Dynamically render route stations circuit for Tur and Retur
  * @param {string} lineNumber
  */
-function renderLineCircuit(lineNumber) {
+async function renderLineCircuit(lineNumber) {
   const linesWrapper = document.querySelector(".lines-wrapper");
   const lineStartEl = document.querySelector(".line-start");
   const lineEndEl = document.querySelector(".line-end");
@@ -571,93 +574,63 @@ function renderLineCircuit(lineNumber) {
     .trim()
     .toLowerCase();
 
-  const turData = linesDataCache.find(
-    (item) =>
-      String(item.number).trim().toLowerCase() === cleanLineNo &&
-      String(item.direction).toLowerCase() === "tur",
-  );
+  try {
+    const response = await fetch(`${endpoint}/v1/route/?line=${cleanLineNo}`);
+    if (!response.ok) {
+      throw new Error(`HTTP Error ${response.status}`);
+    }
+    const data = await response.json();
 
-  const returData = linesDataCache.find(
-    (item) =>
-      String(item.number).trim().toLowerCase() === cleanLineNo &&
-      String(item.direction).toLowerCase() === "retur",
-  );
+    const turData = data.routes.find(
+      (route) => route.direction.toLowerCase() === "tur",
+    );
+    const returData = data.routes.find(
+      (route) => route.direction.toLowerCase() === "retur",
+    );
 
-  const turStations = turData ? turData.stations : [];
-  const returStations = returData ? returData.stations : [];
+    const turStations = turData ? turData.stations : [];
+    const returStations = returData ? returData.stations : [];
 
-  const maxRows = Math.max(turStations.length, returStations.length);
-  if (maxRows === 0) {
+    if (turStations.length === 0 && returStations.length === 0) {
+      stopCircuitTracker();
+      linesWrapper.classList.add("hidden");
+      return;
+    }
+
+    returWrapper.replaceChildren();
+    turWrapper.replaceChildren();
+    linesWrapper.classList.remove("hidden");
+
+    returStations.forEach((station) => {
+      const article = document.createElement("article");
+      article.className = "linie-retur";
+
+      const stationText = document.createElement("span");
+      stationText.className = "station-name";
+      stationText.textContent = capitalizeStationName(station);
+      article.appendChild(stationText);
+
+      returWrapper.appendChild(article);
+    });
+
+    turStations.forEach((station) => {
+      const article = document.createElement("article");
+      article.className = "linie-tur";
+
+      const stationText = document.createElement("span");
+      stationText.className = "station-name";
+      stationText.textContent = capitalizeStationName(station);
+      article.appendChild(stationText);
+
+      turWrapper.appendChild(article);
+    });
+
+    startCircuitTracker();
+  } catch (error) {
+    console.log(`Error downloading route line`, error);
     stopCircuitTracker();
     linesWrapper.classList.add("hidden");
-    return;
   }
-
-  // Show circuit card once valid line data is ready
-  linesWrapper.classList.remove("hidden");
-
-  // 1. Update Start and End Station Headings
-  if (lineStartEl) {
-    lineStartEl.textContent =
-      turStations[0] ||
-      (returStations.length > 0
-        ? returStations[returStations.length - 1]
-        : "Statie inceput");
-  }
-
-  if (lineEndEl) {
-    lineEndEl.textContent =
-      turStations.length > 0
-        ? turStations[turStations.length - 1]
-        : returStations[0] || "Statie sfarsit";
-  }
-
-  // 2. Populate Retur column (all stations have upward arrow nodes positioned on the separator border)
-  returStations.forEach((station) => {
-    const article = document.createElement("article");
-    article.className = "linie-retur";
-
-    const stationText = document.createElement("span");
-    stationText.className = "station-name";
-    stationText.textContent = station;
-    article.appendChild(stationText);
-
-    const node = document.createElement("div");
-    node.className = "circuit-node circuit-node--retur";
-
-    const arrow = document.createElement("i");
-    arrow.className = "ri-arrow-up-s-fill";
-
-    node.appendChild(arrow);
-    // article.appendChild(node);
-
-    returWrapper.appendChild(article);
-  });
-
-  // 3. Populate Tur column (all stations have downward arrow nodes positioned on the separator border)
-  turStations.forEach((station) => {
-    const article = document.createElement("article");
-    article.className = "linie-tur";
-
-    const stationText = document.createElement("span");
-    stationText.className = "station-name";
-    stationText.textContent = station;
-    article.appendChild(stationText);
-
-    const node = document.createElement("div");
-    node.className = "circuit-node circuit-node--tur";
-
-    const arrow = document.createElement("i");
-    arrow.className = "ri-arrow-down-s-fill";
-
-    node.appendChild(arrow);
-    // article.appendChild(node);
-
-    turWrapper.appendChild(article);
-  });
-
-  // Start animated tracker dot moving clockwise on separator border
-  startCircuitTracker();
 }
 
 /**
