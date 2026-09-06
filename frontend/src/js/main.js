@@ -1,42 +1,7 @@
-// Mock route details (line start and end endpoints)
-const mockRouteDetails = {
-  4: { start: "Aurel Vlaicu", end: "Gara" },
-  5: { start: "Aurel Vlaicu", end: "Piața Gării" },
-  6: { start: "Bucium", end: "Aurel Vlaicu" },
-  7: { start: "Decebal", end: "Izlazului" },
-  "24b": { start: "Vivo", end: "Univerisitate" },
-  25: { start: "Bucium", end: "Univerisitate" },
-  30: { start: "Aurel Vlaicu", end: "Cart. Grigorescu" },
-  "39b": { start: "Piața Gării", end: "Chinteni" },
-  "46b": { start: "Zorilor", end: "Aurel Vlaicu" },
-  48: { start: "Aurel Vlaicu", end: "Bulevardul Muncii" },
-};
-
 const endpoint = CONFIG.API_BASE_URL;
 
-// Mock connections between stations
-const mockConnections = [
-  {
-    from: "Aurel Vlaicu",
-    to: "Memorandumului Nord",
-    lines: ["6", "30"],
-  },
-  {
-    from: "Arte Plastice",
-    to: "Memorandumului Nord",
-    lines: ["24b", "6", "30"],
-  },
-  {
-    from: "Aurel Vlaicu",
-    to: "Arte Plastice",
-    lines: ["4", "5", "6", "30", "46b"],
-  },
-  {
-    from: "Aurel Vlaicu",
-    to: "Avram Iancu",
-    lines: ["6", "25", "39b"],
-  },
-];
+let apiStationsCache = [];
+let linesDataCache = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
@@ -55,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Preload lines data from api
+  // Preload lines data from api (single cached request)
   loadLinesData();
 
   // Close dropdown on outside click
@@ -104,15 +69,16 @@ function toggleTheme() {
  * Update theme toggle button icon based on active theme
  * @param {string} theme
  */
-
 function updateThemeIcon(theme) {
   const themeToggleButton = document.querySelector(".theme-toggle");
   if (!themeToggleButton) return;
 
   if (theme === "dark") {
     themeToggleButton.innerHTML = '<i class="ri-sun-line"></i>';
+    themeToggleButton.setAttribute("data-tooltip", "Temă luminoasă");
   } else {
     themeToggleButton.innerHTML = '<i class="ri-moon-line"></i>';
+    themeToggleButton.setAttribute("data-tooltip", "Temă întunecată");
   }
 }
 
@@ -181,10 +147,9 @@ function capitalizeStationName(str) {
 }
 
 /**
- * Init autocomplete logic for single dropdown wrapper
+ * Init autocomplete logic for station input dropdowns
  * @param {HTMLElement} wrapperElement
  */
-
 function setupAutocomplete(wrapperElement) {
   const input = wrapperElement.querySelector(".search-input");
   const suggestionsList = wrapperElement.querySelector(
@@ -197,7 +162,6 @@ function setupAutocomplete(wrapperElement) {
 
   input.addEventListener("input", (e) => {
     const query = e.target.value.trim();
-
     clearTimeout(debounceTimer);
 
     if (query.length < 3) {
@@ -213,7 +177,6 @@ function setupAutocomplete(wrapperElement) {
 
   input.addEventListener("focus", () => {
     const query = input.value.trim();
-
     if (query.length >= 3) {
       fetchSuggestions(query, suggestionsList, input);
     }
@@ -227,11 +190,25 @@ function setupAutocomplete(wrapperElement) {
 }
 
 /**
- * Temporary Mock Data
- * @param {string} query
+ * Show a hint message inside the dropdown
+ * @param {string} message
  * @param {HTMLElement} listElement
- * @param {HTMLInputElement} inputElement
  */
+function renderHintMessage(message, listElement) {
+  listElement.replaceChildren();
+
+  const li = document.createElement("li");
+  li.className = "dropdown-wrapper__item dropdown-wrapper__item--hint";
+  li.style.textAlign = "center";
+  li.style.padding = "1.2rem";
+  li.style.color = "var(--results-heading-color)";
+  li.style.opacity = "0.75";
+  li.style.pointerEvents = "none";
+  li.textContent = message;
+
+  listElement.appendChild(li);
+  listElement.classList.remove("hidden");
+}
 
 /**
  * Show loading spinner inside dropdown list
@@ -273,19 +250,21 @@ function showResultsLoader(resultsWrapper) {
   resultsWrapper.appendChild(container);
 }
 
-let apiStationsCache = [];
-
+/**
+ * Fetch station suggestions with single cached request
+ * @param {string} query
+ * @param {HTMLElement} listElement
+ * @param {HTMLInputElement} inputElement
+ */
 async function fetchSuggestions(query, listElement, inputElement) {
   showDropdownLoader(listElement);
 
   try {
     if (apiStationsCache.length === 0) {
       const response = await fetch(`${endpoint}/v1/stations/`);
-
       if (!response.ok) {
         throw new Error(`HTTP Error: ${response.status}`);
       }
-
       const data = await response.json();
       apiStationsCache = data.map((station) => station.name);
     }
@@ -302,12 +281,11 @@ async function fetchSuggestions(query, listElement, inputElement) {
 }
 
 /**
- * Render suggestions
+ * Render suggestions in dropdown list
  * @param {Array<string>} stations
  * @param {HTMLElement} listElement
  * @param {HTMLInputElement} inputElement
  */
-
 function renderSuggestions(stations, listElement, inputElement) {
   listElement.replaceChildren();
 
@@ -337,14 +315,17 @@ function renderSuggestions(stations, listElement, inputElement) {
  * Empty search results handler
  * @param {HTMLElement} listElement
  */
-
 function hideSuggestions(listElement) {
   listElement.classList.add("hidden");
   listElement.replaceChildren();
 }
 
-function handleSearch() {
-  const searchInputs = document.querySelectorAll(".search-input");
+/**
+ * Handle live search between departure and destination stations using v1/search endpoint
+ */
+async function handleSearch() {
+  const startInput = document.querySelector("#start-station");
+  const endInput = document.querySelector("#end-station");
   const resultsHeading = document.querySelector(".results__heading");
   const resultsTitle = document.querySelector(".results__title");
   const resultsIcon = document.querySelector(".results__icon");
@@ -352,100 +333,116 @@ function handleSearch() {
 
   if (!resultsWrapper || !resultsHeading || !resultsTitle) return;
 
+  const startStation = startInput ? startInput.value.trim() : "";
+  const endStation = endInput ? endInput.value.trim() : "";
+
+  // 1. Both stations must be selected
+  if (!startStation || !endStation) {
+    resultsHeading.classList.remove("hidden");
+    resultsTitle.textContent = "Selectează stațiile de plecare și sosire";
+    if (resultsIcon) resultsIcon.style.display = "none";
+    resultsWrapper.replaceChildren();
+    return;
+  }
+
+  const isSameStation = startStation.toLowerCase() === endStation.toLowerCase();
+  if (isSameStation) {
+    resultsHeading.classList.remove("hidden");
+    resultsTitle.textContent = "Punctul de plecare și sosire coincid";
+    if (resultsIcon) resultsIcon.style.display = "none";
+    resultsWrapper.replaceChildren();
+    return;
+  }
+
   // Show heading section and loader upon search trigger
   resultsHeading.classList.remove("hidden");
   showResultsLoader(resultsWrapper);
 
-  const startStation = searchInputs[0] ? searchInputs[0].value.trim() : "";
-  const endStation = searchInputs[1] ? searchInputs[1].value.trim() : "";
+  let lines = [];
 
-  setTimeout(() => {
-    resultsWrapper.replaceChildren();
+  try {
+    const response = await fetch(
+      `${endpoint}/v1/search/?from=${encodeURIComponent(startStation.toLowerCase())}&to=${encodeURIComponent(endStation.toLowerCase())}`,
+    );
 
-    // 1. Both stations must be selected
-    if (!startStation || !endStation) {
-      resultsTitle.textContent = "Selectează stațiile de plecare și sosire";
-      if (resultsIcon) resultsIcon.style.display = "none";
-      return;
+    if (response.ok) {
+      const data = await response.json();
+      if (Array.isArray(data)) {
+        lines = data.map((item) =>
+          typeof item === "object" && item.number
+            ? String(item.number).toUpperCase()
+            : String(item).toUpperCase(),
+        );
+      }
+    } else {
+      throw new Error(`Endpoint returned status ${response.status}`);
     }
+  } catch (error) {
+    console.warn("Search endpoint error:", error);
+  }
 
-    const isSameStation =
-      startStation.toLowerCase() === endStation.toLowerCase();
-    const connection = findConnection(startStation, endStation);
+  resultsWrapper.replaceChildren();
 
-    // 2. Same station or no direct line connection found
-    if (
-      isSameStation ||
-      !connection ||
-      !connection.lines ||
-      connection.lines.length === 0
-    ) {
-      resultsTitle.textContent = "Nicio linie validă";
-      if (resultsIcon) resultsIcon.style.display = "none";
-      return;
-    }
+  // No lines found
+  if (lines.length === 0) {
+    resultsTitle.textContent = "Nicio linie validă";
+    if (resultsIcon) resultsIcon.style.display = "none";
+    return;
+  }
 
-    // 3. Valid lines!
-    resultsTitle.textContent = "Linii valide";
-    if (resultsIcon) resultsIcon.style.display = "block";
+  // Valid lines found!
+  resultsTitle.textContent = "Linii valide";
+  if (resultsIcon) resultsIcon.style.display = "block";
 
-    connection.lines.forEach((lineNo) => {
-      const details = mockRouteDetails[lineNo] || {
-        start: startStation,
-        end: endStation,
-      };
+  const formattedStart = capitalizeStationName(startStation);
+  const formattedEnd = capitalizeStationName(endStation);
 
-      const card = document.createElement("div");
-      card.classList.add("results__wrapper__card");
+  lines.forEach((lineNo) => {
+    const card = document.createElement("div");
+    card.classList.add("results__wrapper__card");
+    card.setAttribute(
+      "data-tooltip",
+      `Apasă pentru a vedea traseul liniei ${lineNo}`,
+    );
 
-      const badge = document.createElement("span");
-      badge.className = "badge line-number";
-      badge.textContent = lineNo;
+    const badge = document.createElement("span");
+    badge.className = "badge line-number";
+    badge.textContent = lineNo;
 
-      const lineDetails = document.createElement("div");
-      lineDetails.classList.add("line-details");
+    const lineDetails = document.createElement("div");
+    lineDetails.classList.add("line-details");
 
-      const lineEndWrapper = document.createElement("div");
-      lineEndWrapper.classList.add("line-end-wrapper");
+    const lineStart = document.createElement("span");
+    lineStart.classList.add("line-start");
+    lineStart.textContent = formattedStart;
 
-      const lineEndIcon = document.createElement("span");
-      lineEndIcon.classList.add("line-end-icon");
+    const lineEndWrapper = document.createElement("div");
+    lineEndWrapper.classList.add("line-end-wrapper");
 
-      lineEndWrapper.append(lineEndIcon, lineEnd);
-      lineDetails.append(lineStart, lineEndWrapper);
-      card.append(badge, lineDetails);
+    const lineEndIcon = document.createElement("span");
+    lineEndIcon.classList.add("line-end-icon");
 
-      resultsWrapper.append(card);
+    const lineEnd = document.createElement("span");
+    lineEnd.classList.add("line-end");
+    lineEnd.textContent = formattedEnd;
+
+    lineEndWrapper.append(lineEndIcon, lineEnd);
+    lineDetails.append(lineStart, lineEndWrapper);
+    card.append(badge, lineDetails);
+
+    // Clicking card selects line in circuit viewer below
+    card.addEventListener("click", () => {
+      const linesInput = document.querySelector("#lines-input");
+      if (linesInput) {
+        linesInput.value = `Linia ${lineNo}`;
+        renderLineCircuit(lineNo);
+        linesInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     });
-  }, 400);
+
+    resultsWrapper.append(card);
+  });
 }
-
-/**
- * Find connections between two stations
- * @param {string} fromStation
- * @param {string} toStation
- * @returns {Object|null}
- */
-
-function findConnection(fromStation, toStation) {
-  const fromLower = fromStation.toLowerCase();
-  const toLower = toStation.toLowerCase();
-
-  return (
-    mockConnections.find(
-      (conn) =>
-        (conn.from.toLowerCase() === fromLower &&
-          conn.to.toLowerCase() === toLower) ||
-        (conn.from.toLowerCase() === toLower &&
-          conn.to.toLowerCase() === fromLower),
-    ) || null
-  );
-}
-
-/**
- * Global lines data cache
- */
-let linesDataCache = [];
 
 /**
  * Load lines data from local JSON asset
@@ -488,7 +485,12 @@ function setupLinesAutocomplete(wrapperElement) {
 
   if (!linesInput || !suggestionsList) return;
 
+  let debounceTimer = null;
+
   async function filterAndRenderLines(query = "") {
+    if (linesDataCache.length === 0) {
+      showDropdownLoader(suggestionsList);
+    }
     const allLines = await loadLinesData();
 
     const cleanQuery = query
@@ -504,15 +506,18 @@ function setupLinesAutocomplete(wrapperElement) {
   }
 
   linesInput.addEventListener("focus", () => {
-    filterAndRenderLines("");
+    filterAndRenderLines(linesInput.value.trim());
   });
 
   linesInput.addEventListener("click", () => {
-    filterAndRenderLines("");
+    filterAndRenderLines(linesInput.value.trim());
   });
 
   linesInput.addEventListener("input", (e) => {
-    filterAndRenderLines(e.target.value.trim());
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      filterAndRenderLines(e.target.value.trim());
+    }, 150);
   });
 }
 
