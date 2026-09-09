@@ -17,8 +17,8 @@ class searchController
     {
         header('Content-Type: application/json');
 
-        $from = $_GET['from'];
-        $to = $_GET['to'];
+        $from = $_GET['from'] ?? null;
+        $to = $_GET['to'] ?? null;
 
         if(!$from || !$to)
         {
