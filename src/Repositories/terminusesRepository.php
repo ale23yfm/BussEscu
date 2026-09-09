@@ -15,26 +15,41 @@ class terminusesRepository extends baseRepository
         $this->stationsCollection = $db->selectCollection('stations');
     }
 
-    public function getTerminuses(string $line) : array
+    public function getTerminuses(array $numbers): array
     {
-        $response = [];
-        $found = $this->linesCollection->find(['number' => $line])->toArray();
+        $lines = $this->linesCollection->find([
+            'number' => ['$in' => $numbers]
+        ])->toArray();
 
-        // foreach ($found as $doc)
-        //     $response[] = [
-        //     'number' => $doc['number'],
-        //     'start' => $this->resolveStationNames((array)$doc['stations'])[0],
-        //     'stop' => $this->resolveStationNames((array)$doc['stations'])[-1]
-        // ];
-        //return $response;
+        $found = [];
+        foreach ($lines as $doc) {
+            $stations = (array) $doc['stations'];
+            $found[] = $stations[0];
+            $found[] = end($stations);
+        }
 
-        return [
-        'number' => $found['number'],
-        'start' => $this->resolveStationNames((array)$found['stations'])[0],
-        'stop' => $this->resolveStationNames((array)$found['stations'])[-1]
-        // ];
-        ];
+        $found = $this->resolveStationNames($found);
+        $i = 0;
+        $grouped = [];
+
+        foreach ($lines as $doc) {
+            $number = $doc['number'];
+            $grouped[$number][] = [
+                'direction' => $doc['direction'],
+                'start' => $found[$i],
+                'stop' => $found[$i + 1]
+            ];
+            $i += 2;
+        }
+
+        $result = [];
+        foreach ($grouped as $number => $directions) {
+            $result[] = [
+                'number' => $number,
+                'directions' => $directions,
+            ];
+        }
+
+        return $result;
     }
 }
-
-?>

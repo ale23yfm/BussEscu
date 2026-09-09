@@ -1,6 +1,6 @@
 <?php
 
-namespace Ale\Bussescu\Constrollers;
+namespace Ale\Bussescu\Controllers;
 
 use Ale\Bussescu\Services\terminusesService;
 
@@ -17,18 +17,18 @@ class terminusesController
     {
         header('Content-Type: application/json');
         
-        $number = $_GET['line'] ?? null;
+        $numbers = $_GET['lines'] ?? null;
 
-        if (!$number)
+        if (!$numbers || !is_array($numbers))
         {
             http_response_code(400);
-            echo json_encode(['error' => 'The "line" query parameter is required.']);
+            echo json_encode(['error' => 'The "lines" query parameter is required.']);
             return;
         }
 
     try 
     {
-        $lines = $this->service->getTerminuses($number);
+        $lines = $this->service->getTerminuses($numbers);
         http_response_code(200);
         echo json_encode($lines);
     } catch(\InvalidArgumentException $e) 

@@ -55,7 +55,6 @@ const stationNames = [
       "meteor",
       "c-tin. noica",
       "centrul medical",
-      "pmv flip",
       "biserica campului",
       "grigore antipa est",
       "eugen lovinescu est",
@@ -146,7 +145,6 @@ const stationNames = [
       "plevnei nord",
       "campina nord",
       "piata oser",
-      "pmv 2",
       "disp. alverna",
       "albac",
       "baisoara",
@@ -163,7 +161,6 @@ const stationNames = [
       "giuseppe garibaldi",
       "hotel radinsson blu",
       "scoala horea",
-      "pmv 1",
       "napolact",
       "fabrica de paine sud",
       "calea baciului",
@@ -383,10 +380,8 @@ const stationNames = [
       "terapia vest",
       "bobalnei vest",
       "campul painii",
-      "piata 1 mai sosire",
       "barbu patriciu",
       "anton pann",
-      "i. p. voitesti",
       "teatru",
       "silviu dragomir",
       "observatorului nord",
@@ -435,9 +430,8 @@ const stationNames = [
       "plopilor nord",
       "grigore alexandrescu",
       "ravasului",
-
       "campina nord",
-      "clabucet",
+      "disp. clabucet",
       "aeroport terminal",
       "expo transilvania",
       "aurel vlaicu",
@@ -565,7 +559,7 @@ const linesToInsert = [
       "plopilor nord",
       "grigore alexandrescu",
       "ravasului",
-      "clabucet",
+      "disp. clabucet",
       "disp. bucium"
     ])
   },
@@ -623,13 +617,15 @@ const linesToInsert = [
       "sinterom sud tram",
       "termorom sud tram",
       "ers cug sud",
-      "unimet sud"
+      "unimet sud",
+      "disp. tram cug"
     ])
   },
   {
     "number": "102",
     "direction": "retur",
     "stations": toIds([
+      "disp. tram cug",
       "unimet nord",
       "ers cug nord tram",
       "termorom nord tram",
@@ -647,7 +643,7 @@ const linesToInsert = [
       "plopilor nord",
       "grigore alexandrescu",
       "ravasului",
-      "clabucet",
+      "disp. clabucet",
       "disp. bucium"
     ])
   },
@@ -665,7 +661,7 @@ const linesToInsert = [
       "parcul central",
       "george baritiu",
       "facultatea de litere",
-      "piata garii nord"
+      "piata garii noi"
     ])
   },
   {
@@ -680,7 +676,7 @@ const linesToInsert = [
       "plopilor nord",
       "grigore alexandrescu",
       "ravasului",
-      "clabucet"
+      "disp. clabucet"
     ])
   },
   {
@@ -712,7 +708,7 @@ const linesToInsert = [
       "plopilor nord",
       "grigore alexandrescu",
       "ravasului",
-      "clabucet",
+      "disp. clabucet",
       "disp. bucium"
     ])
   },
@@ -1633,7 +1629,8 @@ const linesToInsert = [
       "gradini manastur",
       "balea vest",
       "eugen lovinescu vest",
-      "grigore antipa vest"
+      "grigore antipa vest",
+      "biserica campului"
     ])
   },
   {
@@ -1649,8 +1646,7 @@ const linesToInsert = [
       "calea motilor",
       "memorandumului sud",
       "central",
-      "piata mihai viteazul sud",
-      "pmv flip"
+      "piata mihai viteazul sud"
     ])
   },
   {
@@ -1993,7 +1989,7 @@ const linesToInsert = [
     "stations": toIds([
       "piata garii sud",
       "traian",
-      "i. p. voitesti",
+      "i. p. voitesti",!!!
       "opera",
       "silviu dragomir",
       "observatorului nord",
@@ -2038,7 +2034,7 @@ const linesToInsert = [
       "campul painii",
       "piata 1 mai",
       "parcul feroviarilor",
-      "piata garii nord"
+      "piata garii noi"
     ])
   },
   {
@@ -2051,7 +2047,7 @@ const linesToInsert = [
       "septimiu albini nord",
       "piata cipariu nord",
       "piata avram iancu",
-      "pmv 2"
+      "piata mihai viteazul vest"
     ])
   },
   {
@@ -2107,7 +2103,7 @@ const linesToInsert = [
       "c-tin. brancoveanu est",
       "piata cipariu nord",
       "piata avram iancu",
-      "pmv 2"
+      "piata mihai viteazul vest"
     ])
   },
   {
@@ -2119,7 +2115,8 @@ const linesToInsert = [
       "piata cipariu sud",
       "c-tin. brancoveanu vest",
       "malinului vest",
-      "alverna vest"
+      "alverna vest",
+      "disp. alverna"
     ])
   },
   {
@@ -2128,7 +2125,7 @@ const linesToInsert = [
     "stations": toIds([
       "piata mihai viteazul est",
       "closca",
-      "piata garii nord",
+      "piata garii noi",
       "giordano bruno",
       "fagaras",
       "livezeni",
@@ -2152,7 +2149,7 @@ const linesToInsert = [
       "autogara",
       "piata garii vechi",
       "scoala horea",
-      "pmv 1"
+      "piata mihai viteazul est"
     ])
   },
   {
@@ -3083,7 +3080,8 @@ const linesToInsert = [
       "piata marasti",
       "maresal c-tin. prezan",
       "siretului",
-      "pod someseni"
+      "pod someseni",
+      "disp. ira"
     ])
   },
   {
@@ -3200,7 +3198,7 @@ const linesToInsert = [
     "stations": toIds([
       "piata garii sud",
       "traian",
-      "i. p. voitesti",
+      "i. p. voitesti",!!!!!!!
       "regionala cfr",
       "biserica sf. petru",
       "piata marasti",
@@ -3309,6 +3307,7 @@ const linesToInsert = [
     "number": "50d",
     "direction": "tur",
     "stations": toIds([
+      "disp. zorilor",
       "zorilor",
       "spitalul recuperare sud",
       "observatorului sud",
@@ -3323,11 +3322,13 @@ const linesToInsert = [
       "bobalnei est",
       "terapia est",
       "terapia sud",
+      "ekerle sud",
       "sinterom sud",
       "sieta",
       "termorom sud",
       "ers cug sud",
       "voronet 40",
+      "voronet 55",
       "oleandrului 32",
       "panselutelor 9"
     ])
@@ -3339,6 +3340,7 @@ const linesToInsert = [
       "panselutelor 9",
       "narciselor 19",
       "voronet 85",
+      "voronet 55",
       "voronet 24",
       "unimet nord",
       "ers cug nord",
@@ -3348,10 +3350,10 @@ const linesToInsert = [
       "terapia vest",
       "bobalnei vest",
       "campul painii",
-      "piata 1 mai sosire",
+      "piata 1 mai",
       "barbu patriciu",
       "anton pann",
-      "i. p. voitesti",
+      "i. p. voitesti sud",
       "teatru",
       "silviu dragomir",
       "observatorului nord",

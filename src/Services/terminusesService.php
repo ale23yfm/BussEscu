@@ -13,7 +13,7 @@ class terminusesService
         $this->repository = $repository;
     }
 
-    public function getTerminuses(string $line) : array
+    public function getTerminuses(array $line) : array
     {
         return $this->repository->getTerminuses($line);
     }
