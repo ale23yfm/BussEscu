@@ -1,6 +1,6 @@
 <?php
 
-namespace Ale\Bussescu\Constrollers;
+namespace Ale\Bussescu\Controllers;
 
 use Ale\Bussescu\Services\searchService;
 

@@ -5,10 +5,9 @@ namespace Ale\Bussescu\Repositories;
 use MongoDB\Database;
 use MongoDB\Collection;
 
-class searchRepository
+class searchRepository extends baseRepository
 {
     private Collection $linesCollection;
-    private Collection $stationsCollection;
 
     public function __construct(Database $db)
     {
@@ -16,7 +15,7 @@ class searchRepository
         $this->stationsCollection = $db->selectCollection('stations');
     }
 
-    public function findRoute(string $fromName, string $toName) : array
+    public function findRoute(string $fromName, string $toName): array
     {
         $fromStation = $this->stationsCollection->findOne(['name' => $fromName]);
         $toStation = $this->stationsCollection->findOne(['name' => $toName]);
@@ -27,29 +26,54 @@ class searchRepository
         if (!$toStation) {
             throw new \InvalidArgumentException("Station not found: \"$toName\"");
         }
-        
-        $fromId = $fromStation['_id'];
-        $toId = $toStation['_id'];
+
+        $fromId = (string)$fromStation['_id'];
+        $toId = (string)$toStation['_id'];
 
         $matches = $this->linesCollection->find([
-            'stations' => ['$all' => [$fromId, $toId]]
-        ])->toArray();
+            'stations' => ['$all' => [$fromStation['_id'], $toStation['_id']]]
+        ]);
 
         $result = [];
+        $terminuses = [];
+        $stations = [];
 
-        foreach($matches as $line)
-        {  
-            $number = $line['number'];
-            $numbers = array_column($result, 'number');
-            
-            if (in_array($number, $numbers, true)) continue;
+        $i = 0;
+        foreach ($matches as $doc) {
+            $rawIds = [];
+            foreach ((array) $doc['stations'] as $id) {
+                $rawIds[] = (string) $id;
+            }
+
+            // Find where 'from' and 'to' sit in this document's own order
+            $fromIndex = array_search($fromId, $rawIds, true);
+            $toIndex = array_search($toId, $rawIds, true);
+
+            // Skip this document unless 'from' comes before 'to'
+            if ($fromIndex === false) {
+                continue;
+            }
+            if ($toIndex === false) {
+                continue;
+            }
+            if ($fromIndex >= $toIndex) {
+                continue;
+            }
+
+            $stations = (array)$doc['stations'];
+            $stations = $this->resolveStationNames($stations);
+
+            $terminuses[] = $stations[0];
+            $terminuses[] = end($stations);
 
             $result[] = [
-                'number' => $line['number']
+                'number' => $doc['number'],
+                'direction' => $doc['direction'],
+                'start' => $terminuses[$i],
+                'stop' => $terminuses[$i + 1]
             ];
+            $i += 2;
         }
         return $result;
     }
 }
-
-?>

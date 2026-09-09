@@ -27,8 +27,7 @@ class linesRepository
                 
                 if (in_array($number, $numbers, true)) continue;
 
-                $lines[] = [
-                    //'id' => (string) $doc['_id'],  
+                $lines[] = [ 
                     'number' => $number
                 ];
             }

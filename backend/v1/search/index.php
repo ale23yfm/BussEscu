@@ -3,9 +3,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 require_once __DIR__ . '/../../../config/database.php';
 
-use Ale\Bussescu\Constrollers\searchController;
 use Ale\Bussescu\Repositories\searchRepository;
 use Ale\Bussescu\Services\searchService;
+use Ale\Bussescu\Controllers\searchController;
 
 $db = getDatabase();
 
