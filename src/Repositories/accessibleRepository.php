@@ -34,7 +34,7 @@ class accessibleRepository extends baseRepository
             array_push($all, ...$sliced);
         }
         $result = [];
-        for ($i = 1; $i <= count($all); $i++)
+        for ($i = 0; $i < count($all); $i++)
             {
                 if (in_array($all[$i], $result, true) || !$all[$i]) continue;
                 $result[] = $all[$i];
