@@ -14,7 +14,7 @@ RUN composer install --no-dev --optimize-autoloader
 COPY nginx/default.conf /etc/nginx/http.d/default.conf
 COPY supervisord.conf /etc/supervisord.conf
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 EXPOSE 10000
 CMD ["/entrypoint.sh"]

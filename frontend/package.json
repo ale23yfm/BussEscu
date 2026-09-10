@@ -4,7 +4,7 @@
   "description": "Bussescu - Bus route finder",
   "main": "src/index.html",
   "scripts": {
-    "live-server": "npx live-server src",
+    "live-server": "npx live-server src --host=0.0.0.0",
     "sass-watch": "sass --watch src/scss:src/dist",
     "dev": "concurrently \"npm run sass-watch\" \"npm run live-server\"",
     "compile": "sass src/scss:src/dist --no-source-map --style=compressed",

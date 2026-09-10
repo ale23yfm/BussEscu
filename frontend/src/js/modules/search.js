@@ -41,12 +41,12 @@ export async function handleSearch() {
   resultsHeading.classList.remove("hidden");
   showResultsLoader(resultsWrapper);
 
-  const lines = await searchRoutes(startStation, endStation);
+  const results = await searchRoutes(startStation, endStation);
 
   resultsWrapper.replaceChildren();
 
   // No lines found
-  if (lines.length === 0) {
+  if (results.length === 0) {
     resultsTitle.textContent = "Nicio linie validă";
     if (resultsIcon) resultsIcon.style.display = "none";
     return;
@@ -56,21 +56,33 @@ export async function handleSearch() {
   resultsTitle.textContent = "Linii valide";
   if (resultsIcon) resultsIcon.style.display = "block";
 
-  const formattedStart = capitalizeStationName(startStation);
-  const formattedEnd = capitalizeStationName(endStation);
-
-  renderResultCards(lines, formattedStart, formattedEnd, resultsWrapper);
+  renderResultCards(results, resultsWrapper);
 }
 
 /**
  * Render cards for found routes
- * @param {Array<string>} lines
- * @param {string} formattedStart
- * @param {string} formattedEnd
+ * @param {Array<{number: string, start?: string, stop?: string}>} results
  * @param {HTMLElement} resultsWrapper
  */
-function renderResultCards(lines, formattedStart, formattedEnd, resultsWrapper) {
-  lines.forEach((lineNo) => {
+function renderResultCards(results, resultsWrapper) {
+  results.forEach((item) => {
+    const lineNo = typeof item === "object" ? item.number : item;
+    const rawStart =
+      typeof item === "object" && item.start && item.start.trim()
+        ? item.start
+        : "";
+    const rawStop =
+      typeof item === "object" && item.stop && item.stop.trim()
+        ? item.stop
+        : "";
+
+    const lineStartText = rawStart
+      ? capitalizeStationName(rawStart)
+      : "Nespecificat";
+    const lineEndText = rawStop
+      ? capitalizeStationName(rawStop)
+      : "Nespecificat";
+
     const card = document.createElement("div");
     card.classList.add("results__wrapper__card");
     card.setAttribute(
@@ -87,7 +99,7 @@ function renderResultCards(lines, formattedStart, formattedEnd, resultsWrapper) 
 
     const lineStart = document.createElement("span");
     lineStart.classList.add("line-start");
-    lineStart.textContent = formattedStart;
+    lineStart.textContent = lineStartText;
 
     const lineEndWrapper = document.createElement("div");
     lineEndWrapper.classList.add("line-end-wrapper");
@@ -97,13 +109,13 @@ function renderResultCards(lines, formattedStart, formattedEnd, resultsWrapper) 
 
     const lineEnd = document.createElement("span");
     lineEnd.classList.add("line-end");
-    lineEnd.textContent = formattedEnd;
+    lineEnd.textContent = lineEndText;
 
     lineEndWrapper.append(lineEndIcon, lineEnd);
     lineDetails.append(lineStart, lineEndWrapper);
     card.append(badge, lineDetails);
 
-    // Clicking card selects line in circuit viewer below
+    // Open circuit on card click
     card.addEventListener("click", () => {
       const linesInput = document.querySelector("#lines-input");
       if (linesInput) {
