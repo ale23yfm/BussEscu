@@ -41,7 +41,7 @@ export async function renderLineCircuit(lineNumber) {
     turWrapper.replaceChildren();
     linesWrapper.classList.remove("hidden");
 
-    returStations.forEach((station) => {
+    [...returStations].reverse().forEach((station) => {
       const article = document.createElement("article");
       article.className = "linie-retur";
 

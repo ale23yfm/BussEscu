@@ -45,11 +45,21 @@ export async function searchRoutes(startStation, endStation) {
     if (response.ok) {
       const data = await response.json();
       if (Array.isArray(data)) {
-        return data.map((item) =>
-          typeof item === "object" && item.number
-            ? String(item.number).toUpperCase()
-            : String(item).toUpperCase(),
-        );
+        return data.map((item) => {
+          if (typeof item === "object" && item !== null) {
+            return {
+              number: String(item.number || "").toUpperCase(),
+              start: item.start || "",
+              stop: item.stop || "",
+            };
+          }
+
+          return {
+            number: String(item).toUpperCase(),
+            start: "",
+            stop: "",
+          };
+        });
       }
     } else {
       throw new Error(`Endpoint returned status ${response.status}`);
