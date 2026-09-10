@@ -5,10 +5,9 @@ namespace Ale\Bussescu\Repositories;
 use MongoDB\Collection;
 use MongoDB\Database;
 
-class accessibleRepository
+class accessibleRepository extends baseRepository
 {
     private Collection $linesCollection;
-    private Collection $stationsCollection;
 
     public function __construct(Database $db)
     {
@@ -16,7 +15,7 @@ class accessibleRepository
         $this->stationsCollection = $db->selectCollection('stations');
     }
 
-    public function getAccessible(string $name) : array
+    public function getAccessible(string $name): array
     {
 
         $station = $this->stationsCollection->findOne(['name' => $name]);
@@ -25,14 +24,21 @@ class accessibleRepository
             'stations' => ['$all' => [$station['_id']]]
         ]);
 
-        $result = [];
+        $stations = [];
         foreach ($found as $doc)
+            $stations[] = $this->resolveStationNames((array)$doc['stations']);
+
+        $all = [];
+        foreach ($stations as $doc) {
+            $sliced = array_slice($doc, array_search($name, $doc) + 1);
+            array_push($all, ...$sliced);
+        }
+        $result = [];
+        for ($i = 1; $i <= count($all); $i++)
             {
-
+                if (in_array($all[$i], $result, true) || !$all[$i]) continue;
+                $result[] = $all[$i];
             }
-        return (array)$found;
-
         return $result;
     }
 }
-?>
