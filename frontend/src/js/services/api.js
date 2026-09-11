@@ -123,3 +123,29 @@ export async function fetchRouteDetails(cleanLineNo) {
     returStations: returData ? returData.stations : [],
   };
 }
+
+/**
+ * Fetch accessible direct destination stations from a departure station
+ * @param {string} departureStation
+ * @returns {Promise<Array<string>>}
+ */
+
+export async function fetchAccessibleStations(departureStation) {
+  if (!departureStation) return [];
+
+  try {
+    const response = await fetch(
+      `${endpoint}/v1/accessible/?station=${encodeURIComponent(departureStation.toLowerCase())}`,
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      if (Array.isArray(data)) {
+        return data;
+      }
+    }
+  } catch (error) {
+    console.warn("Error fetching accessible stations:", error);
+  }
+  return [];
+}

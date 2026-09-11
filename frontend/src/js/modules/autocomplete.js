@@ -1,6 +1,13 @@
-import { fetchStationSuggestions } from "../services/api.js";
+import {
+  fetchStationSuggestions,
+  fetchAccessibleStations,
+} from "../services/api.js";
 import { capitalizeStationName } from "../utils/helpers.js";
-import { showDropdownLoader, hideSuggestions } from "../utils/ui.js";
+import {
+  showDropdownLoader,
+  hideSuggestions,
+  renderHintMessage,
+} from "../utils/ui.js";
 
 /**
  * Initialize autocomplete logic for station input dropdowns
@@ -14,28 +21,62 @@ export function setupAutocomplete(wrapperElement) {
 
   if (!input || !suggestionsList) return;
 
+  const isEndStation = input.id === "end-station";
   let debounceTimer = null;
 
-  input.addEventListener("input", (e) => {
-    const query = e.target.value.trim();
-    clearTimeout(debounceTimer);
+  async function handleFetch() {
+    const query = input.value.trim();
+    const startInput = document.querySelector("#start-station");
+    const departureStation = startInput ? startInput.value.trim() : "";
+
+    if (isEndStation) {
+      if (!departureStation) {
+        renderHintMessage(
+          "Selectează mai întâi punctul de plecare",
+          suggestionsList,
+        );
+        return;
+      }
+
+      showDropdownLoader(suggestionsList);
+      const accessible = await fetchAccessibleStations(departureStation);
+
+      // Text filtering
+      const filtered = query
+        ? accessible.filter((station) =>
+            station.toLowerCase().includes(query.toLowerCase()),
+          )
+        : accessible;
+
+      if (filtered.length === 0) {
+        renderHintMessage("Nicio legătură directă", suggestionsList);
+      } else {
+        renderSuggestions(filtered, suggestionsList, input);
+      }
+      return;
+    }
 
     if (query.length < 3) {
       hideSuggestions(suggestionsList);
       return;
     }
 
-    // Call fetchSuggestions after a delay (300ms)
-    debounceTimer = setTimeout(() => {
-      fetchSuggestions(query, suggestionsList, input);
-    }, 300);
+    showDropdownLoader(suggestionsList);
+    const filtered = await fetchStationSuggestions(query);
+    if (filtered.length === 0) {
+      hideSuggestions(suggestionsList);
+    } else {
+      renderSuggestions(filtered, suggestionsList, input);
+    }
+  }
+
+  input.addEventListener("input", () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(handleFetch, 300);
   });
 
   input.addEventListener("focus", () => {
-    const query = input.value.trim();
-    if (query.length >= 3) {
-      fetchSuggestions(query, suggestionsList, input);
-    }
+    handleFetch();
   });
 
   input.addEventListener("blur", () => {
