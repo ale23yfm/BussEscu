@@ -41,9 +41,6 @@
       box-shadow: 2px 2px 8px var(--card-shadow);
       position: relative;
       cursor: pointer;
-      transition:
-        background-color 0.2s ease,
-        transform 0.15s ease;
 
       .badge {
         width: 6rem;

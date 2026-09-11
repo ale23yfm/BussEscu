@@ -131,13 +131,13 @@
 
   .lines-wrapper {
     width: 100%;
-    background-color: var(--form-bg);
+    // background-color: var(--form-bg);
     border: 1px solid var(--form-wrapper-border);
     border-radius: 2rem;
     padding: 2.4rem 1.4rem;
     @include flex(column, center, center);
     gap: 1.8rem;
-    box-shadow: 0 0 8px 4px var(--form-shadow);
+    // box-shadow: 0 0 8px 4px var(--form-shadow);
 
     &__body {
       width: 100%;
@@ -192,6 +192,16 @@
             line-height: 1;
           }
         }
+
+        &.station--departure {
+          color: $green;
+          font-weight: 700;
+        }
+
+        &.station--arrival {
+          color: $crimson;
+          font-weight: 700;
+        }
       }
     }
 
@@ -237,6 +247,16 @@
           i {
             line-height: 1;
           }
+        }
+
+        &.station--departure {
+          color: $green;
+          font-weight: 700;
+        }
+
+        &.station--arrival {
+          color: $crimson;
+          font-weight: 700;
         }
       }
     }

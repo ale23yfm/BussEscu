@@ -42,17 +42,21 @@ h6 {
 
 body,
 main,
+footer,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
+p,
+a,
 div,
 button,
 input,
 i,
-span {
+span,
+strong {
   transition:
     background-color 0.3s ease-in-out,
     color 0.3s ease-in-out,
