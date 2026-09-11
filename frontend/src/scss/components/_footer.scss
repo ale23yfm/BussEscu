@@ -1,0 +1,110 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.footer {
+  width: 100%;
+  max-width: 48rem;
+  margin-top: auto;
+  padding: 1.8rem 1.4rem 2.4rem;
+  border-top: 1px solid var(--item-separator);
+  color: var(--results-heading-color);
+  font-size: 1.25rem;
+
+  &__content {
+    @include flex(column, center, center);
+    gap: 1.4rem;
+    text-align: center;
+  }
+
+  &__info {
+    @include flex(column, center, center);
+    gap: 0.3rem;
+  }
+
+  &__brand {
+    font-weight: 500;
+    color: var(--heading-color);
+
+    strong {
+      font-family: $font-heading;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  &__author {
+    font-size: 1.2rem;
+    color: var(--results-heading-color);
+
+    a {
+      color: var(--heading-color);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+
+      &:hover {
+        color: var(--badge-color);
+      }
+    }
+  }
+
+  &__links {
+    @include flex(row, center, center);
+    flex-wrap: wrap;
+    gap: 1.4rem;
+  }
+
+  &__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.2rem;
+    color: var(--results-heading-color);
+
+    i {
+      font-size: 1.5rem;
+    }
+
+    // Tooltip component on hover
+    &::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 0.8rem);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background-color: #{$grey-900};
+      color: #{$alabaster-50};
+      border-radius: 2.5rem;
+      padding: 0.8rem 1.4rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      border: none;
+      box-shadow: none;
+      z-index: 10;
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+    &:hover {
+      color: var(--heading-color);
+
+      &::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+  }
+
+  &__version {
+    font-size: 1.2rem;
+    color: var(--results-heading-color);
+  }
+}

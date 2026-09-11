@@ -41,9 +41,26 @@ export async function renderLineCircuit(lineNumber) {
     turWrapper.replaceChildren();
     linesWrapper.classList.remove("hidden");
 
+    const startInput = document.querySelector("#start-station");
+    const endInput = document.querySelector("#end-station");
+    const departureStation = startInput
+      ? startInput.value.trim().toLowerCase()
+      : "";
+    const arrivalStation = endInput
+      ? endInput.value.trim().toLowerCase()
+      : "";
+
     [...returStations].reverse().forEach((station) => {
+      const cleanStation = String(station || "").trim().toLowerCase();
       const article = document.createElement("article");
       article.className = "linie-retur";
+      article.setAttribute("data-station", cleanStation);
+
+      if (departureStation && cleanStation === departureStation) {
+        article.classList.add("station--departure");
+      } else if (arrivalStation && cleanStation === arrivalStation) {
+        article.classList.add("station--arrival");
+      }
 
       const stationText = document.createElement("span");
       stationText.className = "station-name";
@@ -54,8 +71,16 @@ export async function renderLineCircuit(lineNumber) {
     });
 
     turStations.forEach((station) => {
+      const cleanStation = String(station || "").trim().toLowerCase();
       const article = document.createElement("article");
       article.className = "linie-tur";
+      article.setAttribute("data-station", cleanStation);
+
+      if (departureStation && cleanStation === departureStation) {
+        article.classList.add("station--departure");
+      } else if (arrivalStation && cleanStation === arrivalStation) {
+        article.classList.add("station--arrival");
+      }
 
       const stationText = document.createElement("span");
       stationText.className = "station-name";
@@ -180,4 +205,29 @@ export function stopCircuitTracker() {
   if (dot) {
     dot.classList.remove("circuit-tracker-dot--active");
   }
+}
+
+/**
+ * Update station highlighting on currently rendered circuit
+ */
+export function updateCircuitHighlights() {
+  const startInput = document.querySelector("#start-station");
+  const endInput = document.querySelector("#end-station");
+  const departureStation = startInput
+    ? startInput.value.trim().toLowerCase()
+    : "";
+  const arrivalStation = endInput
+    ? endInput.value.trim().toLowerCase()
+    : "";
+
+  document.querySelectorAll(".linie-tur, .linie-retur").forEach((article) => {
+    const cleanStation = article.getAttribute("data-station") || "";
+    article.classList.remove("station--departure", "station--arrival");
+
+    if (departureStation && cleanStation === departureStation) {
+      article.classList.add("station--departure");
+    } else if (arrivalStation && cleanStation === arrivalStation) {
+      article.classList.add("station--arrival");
+    }
+  });
 }

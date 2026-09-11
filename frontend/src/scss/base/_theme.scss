@@ -4,11 +4,12 @@
 /* Dark Theme (Default) */
 [data-theme="dark"] {
   /* Global / Page */
-  --bg-color: #{$grey-500};
+  --bg-color: #{$grey-700};
   --heading-color: #{$yellow-200};
 
   /* Main Card */
   --form-bg: #1f1f1f75;
+  --form-bg: #{$grey-800};
   // --form-shadow: #ffffff10;
 
   /* Form Wrapper */
@@ -16,9 +17,9 @@
   --form-wrapper-border: transparent;
 
   /* Search Input */
-  --search-input-bg: #{$grey-800};
-  --search-input-focus-bg: #{$grey-800};
-  --search-input-text: #{$grey-50};
+  --search-input-bg: #{$grey-700};
+  --search-input-focus-bg: #{$grey-700};
+  --search-input-text: #{$alabaster-100};
   --search-input-shadow: #ffffff00;
 
   /* Dropdown List */
@@ -82,7 +83,7 @@
 /* Light Theme */
 [data-theme="light"] {
   /* Global / Page */
-  --bg-color: #{$alabaster-200};
+  --bg-color: #{$alabaster-300};
   --heading-color: #{$grey-600};
 
   /* Main Card */
@@ -105,7 +106,7 @@
   --dropdown-bg: #{$yellow-500};
 
   /* Search Button */
-  --search-btn-bg: #{$purple-50};
+  --search-btn-bg: #d5bad160;
   --search-btn-text: #{$purple-500};
   --search-btn-bg-hover: #d5bad150;
   --search-btn-text-hover: #{$purple-700};

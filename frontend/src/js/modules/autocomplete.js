@@ -8,6 +8,7 @@ import {
   hideSuggestions,
   renderHintMessage,
 } from "../utils/ui.js";
+import { updateCircuitHighlights } from "./circuit.js";
 
 /**
  * Initialize autocomplete logic for station input dropdowns
@@ -83,6 +84,7 @@ export function setupAutocomplete(wrapperElement) {
     if (input.value) {
       input.value = capitalizeStationName(input.value);
     }
+    updateCircuitHighlights();
   });
 }
 
@@ -127,6 +129,7 @@ export function renderSuggestions(stations, listElement, inputElement) {
     li.addEventListener("click", () => {
       inputElement.value = formattedStation;
       hideSuggestions(listElement);
+      updateCircuitHighlights();
     });
 
     listElement.appendChild(li);
