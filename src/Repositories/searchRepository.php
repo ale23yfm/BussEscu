@@ -50,7 +50,7 @@ class searchRepository extends baseRepository
             $toIndex = array_search($toId, $rawIds, true);
 
             // Skip this document unless 'from' comes before 'to'
-            if ($fromIndex === false || $toIndex === false | | $fromIndex >= $toIndex)
+            if ($fromIndex === false || $toIndex === false || $fromIndex >= $toIndex)
                 continue;
 
             $stations = (array)$doc['stations'];
