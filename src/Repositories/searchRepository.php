@@ -50,7 +50,7 @@ class searchRepository extends baseRepository
             $toIndex = array_search($toId, $rawIds, true);
 
             // Skip this document unless 'from' comes before 'to'
-            if ($fromIndex === false || $toIndex === false || $fromIndex >= $toIndex)
+            if ($fromIndex === false || $toIndex === false || $fromIndex >= $toIndex) 
                 continue;
 
             $stations = (array)$doc['stations'];
@@ -60,13 +60,13 @@ class searchRepository extends baseRepository
             $terminuses[] = end($stations);
 
             $number = $toIndex - $fromIndex;
-            
+
             $result[] = [
                 'number' => $doc['number'],
                 'direction' => $doc['direction'],
                 'start' => $terminuses[$i],
                 'stop' => $terminuses[$i + 1],
-                'number' => $number
+                'stations' => $number
             ];
             $i += 2;
         }
