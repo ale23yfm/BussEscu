@@ -33,7 +33,7 @@ class routeRepository extends baseRepository
             }
 
         return [
-            'number' => $number,
+            'total' => $number,
             'routes' => $line
         ];
     }

@@ -70,6 +70,10 @@ class searchRepository extends baseRepository
             ];
             $i += 2;
         }
-        return $result;
+
+        return [
+            'total' => count($result),
+            'routes' => $result
+        ];
     }
 }
