@@ -76,9 +76,19 @@
       </div>
 
       <div class="results">
-        <div class="results__heading hidden">
-          <span class="results__icon"></span>
-          <h2 class="results__title">Linii valide</h2>
+        <div class="results__header hidden">
+          <div class="results__header__left">
+            <span class="results__icon"></span>
+            <h2 class="results__title">Linii valide</h2>
+          </div>
+          <button
+            type="button"
+            class="results__toggle hidden"
+            aria-label="Extinde sau restrânge rezultatele"
+          >
+            <span class="results__count"></span>
+            <i class="ri-arrow-up-s-line results__chevron"></i>
+          </button>
         </div>
 
         <div class="results__wrapper">
@@ -116,6 +126,13 @@
               <div class="circuit-terminal circuit-terminal--top">
                 <span>Tur</span>
                 <!-- <i class="ri-arrow-right-s-fill circuit-terminal__icon"></i> -->
+              </div>
+              <div class="circuit-range-indicator hidden">
+                <div class="circuit-range-indicator__line"></div>
+                <div class="circuit-range-indicator__badge">
+                  <span class="circuit-range-indicator__count">0</span>
+                  <span class="circuit-range-indicator__icon"></span>
+                </div>
               </div>
               <span class="circuit-tracker-dot">
                 <i class="ri-arrow-right-s-fill tracker-arrow"></i>
@@ -166,9 +183,9 @@
             target="_blank"
             rel="noopener noreferrer"
             class="footer__link footer__version"
-            data-tooltip="Lansare v1.0.0"
+            data-tooltip="Lansare v1"
           >
-            v1.0.0
+            v1
           </a>
         </div>
       </div>

@@ -10,6 +10,38 @@ import {
 } from "../utils/ui.js";
 import { updateCircuitHighlights } from "./circuit.js";
 
+let lastDepartureStation = "";
+let cachedAccessibleStations = [];
+
+/**
+ * Get accessible stations from cache or API
+ * @param {string} departureStation
+ * @returns {Promise<Array<string>>}
+ */
+async function getAccessibleStations(departureStation) {
+  const cleanDeparture = departureStation.trim().toLowerCase();
+
+  if (
+    cleanDeparture === lastDepartureStation &&
+    cachedAccessibleStations.length > 0
+  ) {
+    return cachedAccessibleStations;
+  }
+
+  const stations = await fetchAccessibleStations(departureStation);
+  lastDepartureStation = cleanDeparture;
+  cachedAccessibleStations = stations || [];
+  return cachedAccessibleStations;
+}
+
+/**
+ * Invalidate accessible stations cache
+ */
+export function invalidateAccessibleCache() {
+  lastDepartureStation = "";
+  cachedAccessibleStations = [];
+}
+
 /**
  * Initialize autocomplete logic for station input dropdowns
  * @param {HTMLElement} wrapperElement
@@ -39,8 +71,16 @@ export function setupAutocomplete(wrapperElement) {
         return;
       }
 
-      showDropdownLoader(suggestionsList);
-      const accessible = await fetchAccessibleStations(departureStation);
+      const cleanDep = departureStation.trim().toLowerCase();
+      const hasCached =
+        cleanDep === lastDepartureStation &&
+        cachedAccessibleStations.length > 0;
+
+      if (!hasCached) {
+        showDropdownLoader(suggestionsList);
+      }
+
+      const accessible = await getAccessibleStations(departureStation);
 
       // Text filtering
       const filtered = query
@@ -72,6 +112,9 @@ export function setupAutocomplete(wrapperElement) {
   }
 
   input.addEventListener("input", () => {
+    if (!isEndStation) {
+      invalidateAccessibleCache();
+    }
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(handleFetch, 300);
   });
@@ -127,6 +170,9 @@ export function renderSuggestions(stations, listElement, inputElement) {
     li.textContent = formattedStation;
 
     li.addEventListener("click", () => {
+      if (inputElement.id === "start-station" && inputElement.value !== formattedStation) {
+        invalidateAccessibleCache();
+      }
       inputElement.value = formattedStation;
       hideSuggestions(listElement);
       updateCircuitHighlights();

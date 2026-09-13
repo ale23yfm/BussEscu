@@ -78,6 +78,7 @@
   --circuit-node-icon: #{$purple-500};
   --circuit-dot-bg: #{$yellow-300};
   --circuit-dot-glow: #{$yellow-300}aa;
+  --bus-stop-icon: url(../assets/icons/bus-stop-dark.png);
 }
 
 /* Light Theme */
@@ -157,4 +158,5 @@
   --circuit-node-icon: #{$yellow-500};
   --circuit-dot-bg: #{$yellow-500};
   --circuit-dot-glow: #{$yellow-500}88;
+  --bus-stop-icon: url(../assets/icons/bus-stop-light.png);
 }

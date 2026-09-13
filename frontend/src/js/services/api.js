@@ -51,6 +51,7 @@ export async function searchRoutes(startStation, endStation) {
               number: String(item.number || "").toUpperCase(),
               start: item.start || "",
               stop: item.stop || "",
+              stations: item.stations || "",
             };
           }
 
@@ -58,6 +59,7 @@ export async function searchRoutes(startStation, endStation) {
             number: String(item).toUpperCase(),
             start: "",
             stop: "",
+            stations: null,
           };
         });
       }

@@ -276,6 +276,97 @@
       border-radius: 9999px;
       background-color: transparent;
 
+      .circuit-range-indicator {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4.8rem;
+        pointer-events: none;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition:
+          top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.25s ease;
+
+        &.hidden {
+          display: none !important;
+        }
+
+        &__line {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 2px;
+          background-color: var(--circuit-line-color);
+          border-radius: 2px;
+
+          &::before,
+          &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--circuit-line-color);
+            box-shadow: 0 0 4px var(--circuit-line-color);
+          }
+
+          &::before {
+            top: -2px;
+          }
+
+          &::after {
+            bottom: -2px;
+          }
+        }
+
+        &__badge {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: var(--circuit-terminal-bg);
+          border: 1.5px solid var(--circuit-line-color);
+          border-radius: 1.2rem;
+          padding: 0.3rem 0.6rem;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 0.35rem;
+          white-space: nowrap;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+          z-index: 2;
+        }
+
+        &__count {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: var(--circuit-terminal-text);
+          font-family: $font-heading;
+          line-height: 1;
+        }
+
+        &__icon {
+          width: 1.6rem;
+          height: 1.6rem;
+          background-image: var(--bus-stop-icon);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          transition: background-image 0.3s ease;
+        }
+      }
+
       .circuit-terminal {
         width: 5.6rem;
         height: 5.6rem;

@@ -3,25 +3,72 @@ import { capitalizeStationName } from "../utils/helpers.js";
 import { showResultsLoader } from "../utils/ui.js";
 import { renderLineCircuit } from "./circuit.js";
 
+let isToggleInitialized = false;
+
+function initResultsToggle() {
+  if (isToggleInitialized) return;
+  const resultsContainer = document.querySelector(".results");
+  const resultsToggle = document.querySelector(".results__toggle");
+  const resultsWrapper = document.querySelector(".results__wrapper");
+
+  if (resultsContainer && resultsToggle && resultsWrapper) {
+    resultsToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isCurrentlyCollapsed =
+        resultsContainer.classList.contains("results--collapsed");
+
+      if (isCurrentlyCollapsed) {
+        // Expanding
+        resultsContainer.classList.remove("results--collapsed");
+        resultsWrapper.style.maxHeight = `${resultsWrapper.scrollHeight}px`;
+        resultsWrapper.style.opacity = "1";
+
+        const onTransitionEnd = () => {
+          if (!resultsContainer.classList.contains("results--collapsed")) {
+            resultsWrapper.style.maxHeight = "none";
+          }
+          resultsWrapper.removeEventListener("transitionend", onTransitionEnd);
+        };
+        resultsWrapper.addEventListener("transitionend", onTransitionEnd);
+      } else {
+        // Collapsing
+        resultsWrapper.style.maxHeight = `${resultsWrapper.scrollHeight}px`;
+        // Force reflow
+        void resultsWrapper.offsetHeight;
+        resultsContainer.classList.add("results--collapsed");
+        resultsWrapper.style.maxHeight = "0px";
+        resultsWrapper.style.opacity = "0";
+      }
+    });
+    isToggleInitialized = true;
+  }
+}
+
 /**
  * Handle live search between departure and destination stations using v1/search endpoint
  */
 export async function handleSearch() {
   const startInput = document.querySelector("#start-station");
   const endInput = document.querySelector("#end-station");
-  const resultsHeading = document.querySelector(".results__heading");
+  const resultsContainer = document.querySelector(".results");
+  const resultsHeader = document.querySelector(".results__header");
   const resultsTitle = document.querySelector(".results__title");
   const resultsIcon = document.querySelector(".results__icon");
+  const resultsToggle = document.querySelector(".results__toggle");
+  const resultsCount = document.querySelector(".results__count");
   const resultsWrapper = document.querySelector(".results__wrapper");
 
-  if (!resultsWrapper || !resultsHeading || !resultsTitle) return;
+  if (!resultsWrapper || !resultsHeader || !resultsTitle) return;
+
+  initResultsToggle();
 
   const startStation = startInput ? startInput.value.trim() : "";
   const endStation = endInput ? endInput.value.trim() : "";
 
   // 1. Both stations must be selected
   if (!startStation || !endStation) {
-    resultsHeading.classList.remove("hidden");
+    resultsHeader.classList.remove("hidden");
+    if (resultsToggle) resultsToggle.classList.add("hidden");
     resultsTitle.textContent = "Selectează stațiile de plecare și sosire";
     if (resultsIcon) resultsIcon.style.display = "none";
     resultsWrapper.replaceChildren();
@@ -30,15 +77,20 @@ export async function handleSearch() {
 
   const isSameStation = startStation.toLowerCase() === endStation.toLowerCase();
   if (isSameStation) {
-    resultsHeading.classList.remove("hidden");
+    resultsHeader.classList.remove("hidden");
+    if (resultsToggle) resultsToggle.classList.add("hidden");
     resultsTitle.textContent = "Punctul de plecare și sosire coincid";
     if (resultsIcon) resultsIcon.style.display = "none";
     resultsWrapper.replaceChildren();
     return;
   }
 
-  // Show heading section and loader upon search trigger
-  resultsHeading.classList.remove("hidden");
+  // Show header section and loader upon search trigger
+  resultsHeader.classList.remove("hidden");
+  if (resultsToggle) resultsToggle.classList.add("hidden");
+  if (resultsContainer) resultsContainer.classList.remove("results--collapsed");
+  resultsWrapper.style.maxHeight = "none";
+  resultsWrapper.style.opacity = "1";
   showResultsLoader(resultsWrapper);
 
   const results = await searchRoutes(startStation, endStation);
@@ -49,12 +101,18 @@ export async function handleSearch() {
   if (results.length === 0) {
     resultsTitle.textContent = "Nicio linie validă";
     if (resultsIcon) resultsIcon.style.display = "none";
+    if (resultsToggle) resultsToggle.classList.add("hidden");
     return;
   }
 
   // Valid lines found!
   resultsTitle.textContent = "Linii valide";
   if (resultsIcon) resultsIcon.style.display = "block";
+
+  if (resultsToggle && resultsCount) {
+    resultsCount.textContent = `${results.length} ${results.length === 1 ? "rezultat" : "rezultate"}`;
+    resultsToggle.classList.remove("hidden");
+  }
 
   renderResultCards(results, resultsWrapper);
 }
@@ -65,6 +123,9 @@ export async function handleSearch() {
  * @param {HTMLElement} resultsWrapper
  */
 function renderResultCards(results, resultsWrapper) {
+  resultsWrapper.style.maxHeight = "none";
+  resultsWrapper.style.opacity = "1";
+
   results.forEach((item) => {
     const lineNo = typeof item === "object" ? item.number : item;
     const rawStart =
@@ -82,6 +143,15 @@ function renderResultCards(results, resultsWrapper) {
     const lineEndText = rawStop
       ? capitalizeStationName(rawStop)
       : "Nespecificat";
+
+    const hasStations =
+      item.stations !== undefined &&
+      item.stations !== null &&
+      item.stations !== "";
+
+    const totalStationsContent = hasStations
+      ? `${item.stations === 1 ? "O stație" : item.stations + " " + "stații"}`
+      : "";
 
     const card = document.createElement("div");
     card.classList.add("results__wrapper__card");
@@ -111,6 +181,13 @@ function renderResultCards(results, resultsWrapper) {
     lineEnd.classList.add("line-end");
     lineEnd.textContent = lineEndText;
 
+    if (hasStations) {
+      const totalStations = document.createElement("span");
+      totalStations.classList.add("total-stations");
+      totalStations.textContent = totalStationsContent;
+      card.append(totalStations);
+    }
+
     lineEndWrapper.append(lineEndIcon, lineEnd);
     lineDetails.append(lineStart, lineEndWrapper);
     card.append(badge, lineDetails);
@@ -121,7 +198,6 @@ function renderResultCards(results, resultsWrapper) {
       if (linesInput) {
         linesInput.value = `Linia ${lineNo}`;
         renderLineCircuit(lineNo);
-        linesInput.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
 
