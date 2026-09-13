@@ -93,12 +93,12 @@ export async function handleSearch() {
   resultsWrapper.style.opacity = "1";
   showResultsLoader(resultsWrapper);
 
-  const results = await searchRoutes(startStation, endStation);
+  const { total, routes } = await searchRoutes(startStation, endStation);
 
   resultsWrapper.replaceChildren();
 
   // No lines found
-  if (results.length === 0) {
+  if (total === 0 || routes.length === 0) {
     resultsTitle.textContent = "Nicio linie validă";
     if (resultsIcon) resultsIcon.style.display = "none";
     if (resultsToggle) resultsToggle.classList.add("hidden");
@@ -110,11 +110,11 @@ export async function handleSearch() {
   if (resultsIcon) resultsIcon.style.display = "block";
 
   if (resultsToggle && resultsCount) {
-    resultsCount.textContent = `${results.length} ${results.length === 1 ? "rezultat" : "rezultate"}`;
+    resultsCount.textContent = `${total} ${total === 1 ? "rezultat" : "rezultate"}`;
     resultsToggle.classList.remove("hidden");
   }
 
-  renderResultCards(results, resultsWrapper);
+  renderResultCards(routes, resultsWrapper);
 }
 
 /**

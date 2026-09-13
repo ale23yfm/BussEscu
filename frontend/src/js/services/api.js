@@ -34,7 +34,7 @@ export async function fetchStationSuggestions(query) {
  * Search valid bus lines between departure and destination stations
  * @param {string} startStation
  * @param {string} endStation
- * @returns {Promise<Array<string>>}
+ * @returns {Promise<{total: number, routes: Array<{number: string, direction?: string, start?: string, stop?: string, stations?: number|string}>}>}
  */
 export async function searchRoutes(startStation, endStation) {
   try {
@@ -44,32 +44,41 @@ export async function searchRoutes(startStation, endStation) {
 
     if (response.ok) {
       const data = await response.json();
-      if (Array.isArray(data)) {
-        return data.map((item) => {
-          if (typeof item === "object" && item !== null) {
-            return {
-              number: String(item.number || "").toUpperCase(),
-              start: item.start || "",
-              stop: item.stop || "",
-              stations: item.stations || "",
-            };
-          }
+      const rawRoutes = Array.isArray(data) ? data : data.routes || [];
+      const totalCount =
+        typeof data.total === "number" ? data.total : rawRoutes.length;
 
+      const routes = rawRoutes.map((item) => {
+        if (typeof item === "object" && item !== null) {
           return {
-            number: String(item).toUpperCase(),
-            start: "",
-            stop: "",
-            stations: null,
+            number: String(item.number || "").toUpperCase(),
+            direction: item.direction || "",
+            start: item.start || "",
+            stop: item.stop || "",
+            stations: item.stations !== undefined ? item.stations : "",
           };
-        });
-      }
+        }
+
+        return {
+          number: String(item).toUpperCase(),
+          direction: "",
+          start: "",
+          stop: "",
+          stations: null,
+        };
+      });
+
+      return {
+        total: totalCount,
+        routes: routes,
+      };
     } else {
       throw new Error(`Endpoint returned status ${response.status}`);
     }
   } catch (error) {
     console.warn("Search endpoint error:", error);
   }
-  return [];
+  return { total: 0, routes: [] };
 }
 
 /**
