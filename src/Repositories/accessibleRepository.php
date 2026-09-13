@@ -33,12 +33,14 @@ class accessibleRepository extends baseRepository
             $sliced = array_slice($doc, array_search($name, $doc) + 1);
             array_push($all, ...$sliced);
         }
+
         $result = [];
         for ($i = 0; $i < count($all); $i++)
             {
                 if (in_array($all[$i], $result, true) || !$all[$i]) continue;
                 $result[] = $all[$i];
             }
+            
         return $result;
     }
 }
