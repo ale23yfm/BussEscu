@@ -2,6 +2,7 @@ import { fetchRouteDetails } from "../services/api.js";
 import { capitalizeStationName } from "../utils/helpers.js";
 
 let circuitAnimFrameId = null;
+let currentRouteStations = { turStations: [], returStations: [] };
 
 /**
  * Dynamically render route stations circuit for Tur and Retur
@@ -90,7 +91,9 @@ export async function renderLineCircuit(lineNumber) {
       turWrapper.appendChild(article);
     });
 
+    currentRouteStations = { turStations, returStations };
     startCircuitTracker();
+    updateCircuitRangeIndicator();
   } catch (error) {
     console.error(`Error downloading route line:`, error);
     stopCircuitTracker();
@@ -208,6 +211,138 @@ export function stopCircuitTracker() {
 }
 
 /**
+ * Calculate station distance on the circuit
+ * @param {string} depName
+ * @param {string} arrName
+ * @param {Array<string>} turStations
+ * @param {Array<string>} returStations
+ * @returns {number}
+ */
+function calculateStationCount(depName, arrName, turStations = [], returStations = []) {
+  if (!depName || !arrName) return 0;
+  const cleanDep = depName.trim().toLowerCase();
+  const cleanArr = arrName.trim().toLowerCase();
+  if (cleanDep === cleanArr) return 0;
+
+  const cleanTur = turStations.map((s) => String(s || "").trim().toLowerCase());
+  const cleanRetur = returStations.map((s) => String(s || "").trim().toLowerCase());
+
+  const turDep = cleanTur.indexOf(cleanDep);
+  const turArr = cleanTur.indexOf(cleanArr);
+  const returDep = cleanRetur.indexOf(cleanDep);
+  const returArr = cleanRetur.indexOf(cleanArr);
+
+  const possibleDistances = [];
+
+  // Case 1: Both on Tur in forward direction
+  if (turDep !== -1 && turArr !== -1 && turArr >= turDep) {
+    possibleDistances.push(turArr - turDep);
+  }
+  // Case 2: Both on Retur in forward direction
+  if (returDep !== -1 && returArr !== -1 && returArr >= returDep) {
+    possibleDistances.push(returArr - returDep);
+  }
+  // Case 3: Dep on Tur, Arr on Retur
+  if (turDep !== -1 && returArr !== -1) {
+    possibleDistances.push(cleanTur.length - 1 - turDep + (returArr + 1));
+  }
+  // Case 4: Dep on Retur, Arr on Tur
+  if (returDep !== -1 && turArr !== -1) {
+    possibleDistances.push(cleanRetur.length - 1 - returDep + (turArr + 1));
+  }
+  // Fallback: absolute difference on same branch
+  if (possibleDistances.length === 0) {
+    if (turDep !== -1 && turArr !== -1) {
+      possibleDistances.push(Math.abs(turArr - turDep));
+    } else if (returDep !== -1 && returArr !== -1) {
+      possibleDistances.push(Math.abs(returArr - returDep));
+    }
+  }
+
+  return possibleDistances.length > 0 ? Math.min(...possibleDistances) : 0;
+}
+
+/**
+ * Update the dynamic vertical station range indicator between departure and arrival stations
+ */
+export function updateCircuitRangeIndicator() {
+  const separator = document.querySelector(".separator");
+  if (!separator) return;
+
+  const indicator = separator.querySelector(".circuit-range-indicator");
+  if (!indicator) return;
+
+  const startInput = document.querySelector("#start-station");
+  const endInput = document.querySelector("#end-station");
+  const depName = startInput ? startInput.value.trim().toLowerCase() : "";
+  const arrName = endInput ? endInput.value.trim().toLowerCase() : "";
+
+  if (!depName || !arrName) {
+    indicator.classList.add("hidden");
+    return;
+  }
+
+  const turWrapper = document.querySelector(".tur-wrapper");
+  const returWrapper = document.querySelector(".retur-wrapper");
+
+  let depEl = null;
+  let arrEl = null;
+
+  const depTur = turWrapper ? turWrapper.querySelector(".station--departure") : null;
+  const arrTur = turWrapper ? turWrapper.querySelector(".station--arrival") : null;
+  const depRetur = returWrapper ? returWrapper.querySelector(".station--departure") : null;
+  const arrRetur = returWrapper ? returWrapper.querySelector(".station--arrival") : null;
+
+  if (depTur && arrTur) {
+    depEl = depTur;
+    arrEl = arrTur;
+  } else if (depRetur && arrRetur) {
+    depEl = depRetur;
+    arrEl = arrRetur;
+  } else {
+    depEl = document.querySelector(".station--departure");
+    arrEl = document.querySelector(".station--arrival");
+  }
+
+  if (!depEl || !arrEl) {
+    indicator.classList.add("hidden");
+    return;
+  }
+
+  const separatorRect = separator.getBoundingClientRect();
+  if (separatorRect.height === 0) {
+    indicator.classList.add("hidden");
+    return;
+  }
+
+  const depRect = depEl.getBoundingClientRect();
+  const arrRect = arrEl.getBoundingClientRect();
+
+  const depCenterY = depRect.top + depRect.height / 2 - separatorRect.top;
+  const arrCenterY = arrRect.top + arrRect.height / 2 - separatorRect.top;
+
+  const topY = Math.min(depCenterY, arrCenterY);
+  const bottomY = Math.max(depCenterY, arrCenterY);
+  const height = Math.max(bottomY - topY, 8);
+
+  const count = calculateStationCount(
+    depName,
+    arrName,
+    currentRouteStations.turStations,
+    currentRouteStations.returStations
+  );
+
+  const countEl = indicator.querySelector(".circuit-range-indicator__count");
+
+  indicator.style.top = `${topY}px`;
+  indicator.style.height = `${height}px`;
+
+  if (countEl) countEl.textContent = count;
+
+  indicator.classList.remove("hidden");
+}
+
+/**
  * Update station highlighting on currently rendered circuit
  */
 export function updateCircuitHighlights() {
@@ -230,4 +365,13 @@ export function updateCircuitHighlights() {
       article.classList.add("station--arrival");
     }
   });
+
+  updateCircuitRangeIndicator();
 }
+
+window.addEventListener("resize", () => {
+  const linesWrapper = document.querySelector(".lines-wrapper");
+  if (linesWrapper && !linesWrapper.classList.contains("hidden")) {
+    updateCircuitRangeIndicator();
+  }
+});

@@ -6,10 +6,17 @@
   gap: 1.8rem;
   width: 100%;
 
-  &__heading {
-    @include flex(row, center, center);
-    gap: 1.2rem;
+  &__header {
+    width: 100%;
+    @include flex(row, space-between, center);
+    user-select: none;
+
+    &__left {
+      @include flex(row, flex-start, center);
+      gap: 1.2rem;
+    }
   }
+
   &__icon {
     width: 3.6rem;
     height: 3.6rem;
@@ -26,10 +33,54 @@
     font-size: 1.8rem;
   }
 
+  &__toggle {
+    @include flex(row, center, center);
+    gap: 0.6rem;
+    background: transparent;
+    border: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.8rem;
+    color: var(--results-heading-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--heading-color);
+    }
+
+    &.hidden {
+      display: none !important;
+    }
+  }
+
+  &__count {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--results-heading-color);
+    background-color: var(--card-bg);
+    padding: 0.3rem 0.8rem;
+    border-radius: 1.2rem;
+    border: 1px solid var(--form-wrapper-border);
+  }
+
+  &__chevron {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--results-heading-color);
+    transition:
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.3s ease-in-out;
+  }
+
   &__wrapper {
     width: 100%;
-    @include flex(column, center, center);
+    @include flex(column, flex-start, center);
     gap: 1.2rem;
+    overflow: hidden;
+    transition:
+      max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s ease,
+      gap 0.35s ease;
 
     &__card {
       width: 100%;
@@ -87,6 +138,18 @@
         }
       }
 
+      .total-stations {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: var(--badge-bg);
+        color: var(--badge-color);
+        padding: 0.4rem 0.8rem;
+        border-radius: 0.8rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
       // Tooltip component on hover
       &::after {
         content: attr(data-tooltip);
@@ -122,6 +185,27 @@
           transform: translateX(-50%) translateY(0);
         }
       }
+    }
+  }
+
+  &--collapsed {
+    gap: 0;
+
+    .results__chevron {
+      transform: rotate(180deg);
+    }
+
+    .results__count {
+      background-color: var(--badge-bg);
+      color: var(--badge-color);
+      border-color: var(--badge-color);
+    }
+
+    .results__wrapper {
+      max-height: 0 !important;
+      opacity: 0;
+      pointer-events: none;
+      gap: 0;
     }
   }
 }
